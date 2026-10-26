@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MOHAMMED | مصمم جرافيك</title>
+    <title>MOHAMMED | 3D & Brand Designer</title>
+    <!-- خطوط عصرية -->
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -12,154 +13,214 @@
             theme: {
                 extend: {
                     fontFamily: { tajawal: ['Tajawal', 'sans-serif'] },
-                    colors: { brandDark: '#020305', brandBlue: '#00D2FF', brandPurple: '#9D00FF' }
+                    colors: { 
+                        magnificBlack: '#000000', 
+                        magnificDark: '#0a0a0a',
+                        neonBlue: '#00F0FF', 
+                        neonPurple: '#8A2BE2' 
+                    }
                 }
             }
         }
     </script>
     <style>
-        body { font-family: 'Tajawal', sans-serif; background-color: #020305; color: #f0f0f0; overflow-x: hidden; scroll-behavior: smooth; }
-        .glass { background: rgba(10, 12, 20, 0.4); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.03); }
-        
-        /* تأثيرات الإضاءة الراقية */
-        .glow-text { text-shadow: 0 0 30px rgba(0, 210, 255, 0.4); }
-        
-        /* تخصيص السكرول */
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: #020305; }
-        ::-webkit-scrollbar-thumb { background: #333; border-radius: 10px; }
-        ::-webkit-scrollbar-thumb:hover { background: #00D2FF; }
-
-        /* حركة التقييمات */
-        .review-fade { animation: fadeInOut 5s infinite; }
-        @keyframes fadeInOut {
-            0% { opacity: 0; transform: translateY(10px); }
-            10% { opacity: 1; transform: translateY(0); }
-            90% { opacity: 1; transform: translateY(0); }
-            100% { opacity: 0; transform: translateY(-10px); }
+        body { 
+            font-family: 'Tajawal', sans-serif; 
+            background-color: #000000; 
+            color: #ffffff; 
+            overflow-x: hidden; 
+            scroll-behavior: smooth; 
         }
+        
+        /* تأثيرات الإضاءة الراقية بستايل Magnific */
+        .glass-nav { 
+            background: rgba(0, 0, 0, 0.7); 
+            backdrop-filter: blur(20px); 
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05); 
+        }
+        .text-glow { text-shadow: 0 0 40px rgba(0, 240, 255, 0.5); }
+        .box-glow:hover { box-shadow: 0 0 30px rgba(138, 43, 226, 0.3); border-color: rgba(138, 43, 226, 0.5); }
+        
+        /* تصميم شبكة الأعمال */
+        .design-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+            background: #0a0a0a;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: all 0.5s ease;
+        }
+        .design-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1), filter 0.5s ease;
+        }
+        .design-card:hover img {
+            transform: scale(1.1);
+            filter: brightness(0.4) contrast(1.2);
+        }
+        .design-overlay {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            z-index: 10;
+        }
+        .design-card:hover .design-overlay {
+            opacity: 1;
+        }
+
+        /* تخصيص السكرول */
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-track { background: #000; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #00F0FF; }
     </style>
 </head>
-<body class="antialiased selection:bg-brandBlue selection:text-black">
+<body class="antialiased selection:bg-neonBlue selection:text-black">
 
     <!-- Navbar -->
-    <nav class="fixed w-full top-0 z-50 glass px-6 py-5 flex justify-between items-center transition-all border-b border-white/5">
+    <nav class="fixed w-full top-0 z-50 glass-nav px-6 py-5 flex justify-between items-center transition-all">
         <div class="text-xl font-black tracking-[0.2em] text-white uppercase">
             @M8DESINER
         </div>
-        <div class="hidden md:flex gap-10 text-sm font-medium text-gray-400">
+        <div class="hidden md:flex gap-10 text-sm font-bold text-gray-400">
             <a href="#about" class="hover:text-white transition">نبذة عني</a>
-            <a href="#portfolio" class="hover:text-white transition">الأعمال</a>
+            <a href="#portfolio" class="hover:text-white transition">التصاميم</a>
             <a href="#reviews" class="hover:text-white transition">العملاء</a>
         </div>
-        <a href="https://wa.me/9647828544008" target="_blank" class="text-sm font-bold text-white hover:text-cyan-400 transition flex items-center gap-2">
+        <a href="https://wa.me/9647828544008" target="_blank" class="text-sm font-bold text-white hover:text-neonBlue transition flex items-center gap-2">
             تواصل معي <i class="fa-brands fa-whatsapp text-lg"></i>
         </a>
     </nav>
 
-    <!-- Hero Section -->
-    <header class="pt-48 pb-32 px-6 text-center relative flex flex-col items-center justify-center">
-        <!-- إضاءة خلفية هادئة -->
-        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-gradient-to-r from-cyan-900/20 to-purple-900/20 blur-[100px] rounded-full -z-10"></div>
+    <!-- Hero Section (Magnific Style) -->
+    <header class="pt-48 pb-32 px-6 text-center relative flex flex-col items-center justify-center min-h-screen">
+        <!-- إضاءة خلفية -->
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-r from-blue-900/30 via-purple-900/30 to-black blur-[120px] rounded-full -z-10 pointer-events-none"></div>
         
-        <h1 class="text-5xl md:text-7xl font-black leading-tight mb-6 max-w-4xl text-white tracking-tight">
-            تصاميم <span class="bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent glow-text">استثنائية</span> لعلامتك التجارية
+        <h1 class="text-5xl md:text-8xl font-black leading-tight mb-6 max-w-5xl text-white tracking-tighter">
+            ارتقِ بمشروعك إلى <br>
+            <span class="bg-gradient-to-r from-neonBlue to-neonPurple bg-clip-text text-transparent text-glow">البُعد البصري القادم</span>
         </h1>
-        <p class="text-gray-400 text-lg md:text-xl max-w-2xl mb-12 font-light leading-relaxed">
-            نصنع الفارق البصري من خلال تصاميم سوشيال ميديا وشعارات احترافية تجمع بين الرقي والبساطة.
+        <p class="text-gray-400 text-lg md:text-2xl max-w-2xl mb-12 font-light leading-relaxed">
+            تصاميم 3D، شعارات عصرية، وهويات بصرية متكاملة تُصنع بدقة متناهية لتبرز علامتك التجارية بقوة.
         </p>
-        <a href="#portfolio" class="px-10 py-4 bg-white text-black font-bold rounded-full hover:scale-105 transition duration-300 text-sm tracking-wide">
-            استكشف الأعمال
+        <a href="#portfolio" class="px-10 py-4 bg-white text-black font-extrabold rounded-full hover:scale-105 transition duration-300 text-sm tracking-widest uppercase">
+            استكشف التصاميم
         </a>
     </header>
 
-    <!-- About Me Section -->
-    <section id="about" class="py-20 px-6 max-w-5xl mx-auto">
-        <div class="glass p-10 md:p-16 rounded-3xl text-center relative overflow-hidden">
-            <div class="absolute top-0 right-0 w-32 h-32 bg-cyan-500/10 blur-[50px] rounded-full"></div>
-            <h2 class="text-3xl font-black mb-6 text-white">من أنا؟</h2>
-            <p class="text-gray-300 text-lg leading-relaxed max-w-3xl mx-auto font-light">
-                أنا محمد، مصمم جرافيك شغوف بتحويل الأفكار إلى تحف فنية رقمية. أختص في تصميم الشعارات، الهويات البصرية، ومنشورات السوشيال ميديا بأسلوب عصري يواكب التطور. هدفي هو مساعدة المشاريع والشركات على الظهور بأبهى حلة بصرية تعكس قيمتها الحقيقية في السوق وتبني ثقة مستدامة مع عملائها.
-            </p>
-        </div>
+    <!-- About Section -->
+    <section id="about" class="py-20 px-6 max-w-4xl mx-auto text-center">
+        <h2 class="text-sm font-bold tracking-[0.3em] text-gray-500 uppercase mb-8">من أنا</h2>
+        <p class="text-xl md:text-3xl text-gray-200 font-light leading-relaxed">
+            أنا <span class="font-bold text-white">محمد</span>، مخرج فني ومصمم جرافيك. أدمج بين الفن الهندسي والتقنيات الحديثة لإنتاج <span class="text-neonBlue">شعارات، هويات بصرية، وتصاميم سوشيال ميديا</span> لا تُنسى. لا أصمم مجرد صور، بل أبني شخصية بصرية متكاملة تمنح مشروعك الثقة والاحترافية التي يستحقها في السوق.
+        </p>
     </section>
 
-    <!-- Auto-Generated Portfolio Section -->
-    <section id="portfolio" class="py-24 px-6 max-w-7xl mx-auto">
+    <!-- 100 Auto-Generated Designs Gallery -->
+    <section id="portfolio" class="py-32 px-4 max-w-[1400px] mx-auto">
         <div class="text-center mb-16">
-            <h2 class="text-4xl font-black mb-4 text-white">معرض الأعمال</h2>
-            <p class="text-gray-400 font-light">مجموعة واسعة من الشعارات وتصاميم السوشيال ميديا.</p>
+            <h2 class="text-4xl md:text-5xl font-black mb-4 text-white">معرض التصاميم</h2>
+            <p class="text-gray-400 font-light text-lg">أكثر من 100 عمل يجمع بين الشعارات الاحترافية والتصاميم العصرية.</p>
         </div>
 
-        <!-- سيتم توليد 100 تصميم هنا عبر الجافاسكربت -->
-        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6" id="gallery-container">
-            <!-- الصور تضاف برمجياً -->
+        <!-- الصندوق الذي ستتولد فيه التصاميم -->
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4" id="gallery-container">
+            <!-- سيتم حقن 100 تصميم هنا بواسطة الجافاسكربت -->
         </div>
     </section>
 
-    <!-- Dynamic Reviews (Classy & Minimalist) -->
-    <section id="reviews" class="py-32 px-6 relative bg-gradient-to-b from-transparent via-gray-900/10 to-transparent">
+    <!-- Reviews Section -->
+    <section id="reviews" class="py-32 px-6 relative bg-magnificDark border-y border-white/5">
         <div class="max-w-4xl mx-auto text-center">
-            <h2 class="text-sm font-bold tracking-[0.3em] text-cyan-400 uppercase mb-12">آراء العملاء</h2>
+            <h2 class="text-sm font-bold tracking-[0.4em] text-neonBlue uppercase mb-16">آراء العملاء</h2>
             
-            <div id="review-container" class="min-h-[200px] flex flex-col justify-center items-center transition-all duration-700">
-                <!-- المحتوى يتولد بالجافاسكربت -->
+            <div id="review-container" class="min-h-[220px] flex flex-col justify-center items-center transition-all duration-700">
+                <!-- التقييمات تتولد برمجياً -->
             </div>
         </div>
     </section>
 
-    <!-- Minimalist Contact Section -->
-    <section id="contact" class="py-24 px-6 max-w-3xl mx-auto text-center border-t border-white/5">
-        <h2 class="text-3xl font-black mb-10 text-white">لنتحدث عن مشروعك</h2>
-        <div class="flex flex-wrap justify-center gap-8">
-            <a href="https://wa.me/9647828544008" target="_blank" class="w-16 h-16 rounded-full glass flex items-center justify-center text-gray-400 hover:text-white hover:border-white transition duration-300">
-                <i class="fa-brands fa-whatsapp text-2xl"></i>
+    <!-- Contact Section -->
+    <section id="contact" class="py-32 px-6 max-w-3xl mx-auto text-center">
+        <h2 class="text-4xl font-black mb-12 text-white">لنصنع إبداعاً جديداً</h2>
+        <div class="flex flex-wrap justify-center gap-6 md:gap-10">
+            <a href="https://wa.me/9647828544008" target="_blank" class="w-20 h-20 rounded-2xl bg-magnificDark border border-white/10 flex items-center justify-center text-gray-400 hover:text-white box-glow transition duration-300">
+                <i class="fa-brands fa-whatsapp text-3xl"></i>
             </a>
-            <a href="https://instagram.com/m8desiner" target="_blank" class="w-16 h-16 rounded-full glass flex items-center justify-center text-gray-400 hover:text-white hover:border-white transition duration-300">
-                <i class="fa-brands fa-instagram text-2xl"></i>
+            <a href="https://instagram.com/m8desiner" target="_blank" class="w-20 h-20 rounded-2xl bg-magnificDark border border-white/10 flex items-center justify-center text-gray-400 hover:text-white box-glow transition duration-300">
+                <i class="fa-brands fa-instagram text-3xl"></i>
             </a>
-            <a href="https://tiktok.com/@m8desiner" target="_blank" class="w-16 h-16 rounded-full glass flex items-center justify-center text-gray-400 hover:text-white hover:border-white transition duration-300">
-                <i class="fa-brands fa-tiktok text-2xl"></i>
+            <a href="https://tiktok.com/@m8desiner" target="_blank" class="w-20 h-20 rounded-2xl bg-magnificDark border border-white/10 flex items-center justify-center text-gray-400 hover:text-white box-glow transition duration-300">
+                <i class="fa-brands fa-tiktok text-3xl"></i>
             </a>
-            <a href="https://x.com/m8desiner" target="_blank" class="w-16 h-16 rounded-full glass flex items-center justify-center text-gray-400 hover:text-white hover:border-white transition duration-300">
-                <i class="fa-brands fa-x-twitter text-2xl"></i>
+            <a href="https://x.com/m8desiner" target="_blank" class="w-20 h-20 rounded-2xl bg-magnificDark border border-white/10 flex items-center justify-center text-gray-400 hover:text-white box-glow transition duration-300">
+                <i class="fa-brands fa-x-twitter text-3xl"></i>
             </a>
+        </div>
+        <div class="mt-16 text-gray-600 font-mono text-xl tracking-[0.2em] uppercase">
+            @m8desiner
         </div>
     </section>
 
     <!-- Scripts -->
     <script>
-        // 1. توليد 100 تصميم عشوائي (شعارات وبوستات سوشيال ميديا)
+        // 1. نظام توليد 100 تصميم 3D وجرافيك (ليس صور فوتوغرافية)
         const galleryContainer = document.getElementById('gallery-container');
         let galleryHTML = '';
-        const designTypes = ['شعار', 'سوشيال ميديا', 'بوست إعلاني', 'هوية بصرية'];
+        
+        // أوامر دقيقة للذكاء الاصطناعي لتوليد تصاميم راقية تشبه Magnific
+        const designPrompts = [
+            "ultra minimalist luxury geometric logo design dark background neon lighting octane render",
+            "3D typography graphic design poster cyberpunk neon glowing text dark aesthetic",
+            "abstract 3D glassmorphism shapes branding mockup dark studio lighting",
+            "futuristic brand identity sleek logo design metallic silver on black background",
+            "high end product packaging design 3D render dramatic lighting dark mode",
+            "modern social media advertisement poster neon vibrant colors vector art style",
+            "monogram logo design elegant minimal gold on black background",
+            "cyberpunk aesthetic UI UX graphic design elements floating 3D"
+        ];
 
-        // حلقة تكرار لإنشاء 100 صورة
+        const titles = ['شعار فخم', 'بوست 3D', 'هوية بصرية', 'تصميم نيون', 'شعار هندسي', 'بوستر سوشيال ميديا'];
+
+        // توليد 100 تصميم
         for (let i = 1; i <= 100; i++) {
-            const randomType = designTypes[Math.floor(Math.random() * designTypes.length)];
-            // نستخدم خدمة صور عشوائية تولد صورة مختلفة لكل رقم
-            const imgUrl = `https://picsum.photos/seed/design${i}/600/600`;
+            // اختيار أوامر عشوائية لكل صورة
+            const randomPrompt = designPrompts[Math.floor(Math.random() * designPrompts.length)];
+            const randomTitle = titles[Math.floor(Math.random() * titles.length)];
             
+            // استخدام منصة Pollinations AI لتوليد تصاميم فنية مباشرة، مع دمج الرقم لضمان اختلاف كل صورة
+            const encodedPrompt = encodeURIComponent(randomPrompt + " highly detailed 8k concept art variation " + i);
+            const imgUrl = `https://image.pollinations.ai/prompt/${encodedPrompt}?seed=${i}&width=600&height=600&nologo=true`;
+            
+            // استخدام loading="lazy" مهم جداً لعدم انهيار الموقع بسبب 100 صورة
             galleryHTML += `
-                <div class="relative rounded-xl overflow-hidden group aspect-square bg-gray-900 border border-white/5 cursor-pointer">
-                    <img src="${imgUrl}" loading="lazy" class="w-full h-full object-cover transition duration-700 group-hover:scale-110 group-hover:opacity-30" alt="تصميم ${i}">
-                    <div class="absolute inset-0 flex flex-col justify-center items-center opacity-0 group-hover:opacity-100 transition duration-500 z-10 p-4 text-center">
-                        <span class="text-cyan-400 text-xs font-bold tracking-widest mb-2">PROJECT ${i}</span>
-                        <h3 class="text-lg font-black text-white">${randomType}</h3>
+                <div class="design-card aspect-square">
+                    <img src="${imgUrl}" loading="lazy" alt="تصميم ${i}">
+                    <div class="design-overlay">
+                        <span class="text-neonBlue text-xs font-bold tracking-widest mb-2 font-mono">DESIGN NO.${i}</span>
+                        <h3 class="text-xl font-black text-white">${randomTitle}</h3>
                     </div>
                 </div>
             `;
         }
         galleryContainer.innerHTML = galleryHTML;
 
-        // 2. نظام التقييمات الراقي (أسماء مختلطة، مسمى عميل فقط)
+        // 2. نظام التقييمات الراقي (أسماء عربية وأجنبية، مسمى عميل فقط)
         const reviews = [
-            { name: "علي الشمري", text: "دقة في المواعيد واحترافية عالية بالتصميم. الشعار كان يعكس فكرة المشروع بشكل مبهر." },
-            { name: "John Doe", text: "تصاميم استثنائية! بوستات السوشيال ميديا التي استلمتها رفعت من مستوى حسابي بشكل ملحوظ." },
-            { name: "سارة الخالدي", text: "لمسة راقية جداً في اختيار الألوان وتناسق الخطوط. أنصح بالتعامل معه بشدة." },
-            { name: "Emma Watson", text: "فهم سريع للمطلوب وتنفيذ يفوق التوقعات. الهوية البصرية كانت في قمة الروعة." },
-            { name: "أحمد الجبوري", text: "شغل مرتب وفخم، التصاميم جذابة للعين ومريحة وتعطي طابع احترافي حقيقي للعمل." },
-            { name: "David Clark", text: "إبداع متواصل وتصاميم تواكب أحدث الترندات. تجربة عمل ممتازة جداً." }
+            { name: "أحمد الدليمي", text: "تصميم الشعار كان يعكس فخامة المشروع بالملي. دقة واحترافية لا توصف." },
+            { name: "Michael Vance", text: "العمل معه تجربة مختلفة. تصاميم السوشيال ميديا 3D نقلت حسابنا لمستوى آخر." },
+            { name: "سارة الخالدي", text: "لمسة راقية جداً في اختيار الألوان والإضاءة. استلمت هوية بصرية تفوق الخيال." },
+            { name: "زينب محمد", text: "كل بوست استلمه منه عبارة عن لوحة فنية. تفاصيل النيون والجودة جداً مبهرة." },
+            { name: "David Chen", text: "ابداع فني وتقني رهيب. الشعارات التي يصممها تحمل طابعاً عالمياً بامتياز." },
+            { name: "عمر الشمري", text: "فهم سريع للمطلوب وتنفيذ بدقة عالية. التصاميم أعطت ثقل وقوة لعلامتنا التجارية." }
         ];
 
         const reviewContainer = document.getElementById('review-container');
@@ -171,10 +232,10 @@
             
             setTimeout(() => {
                 reviewContainer.innerHTML = `
-                    <p class="text-2xl md:text-4xl text-white font-light leading-snug mb-10 italic">"${review.text}"</p>
+                    <p class="text-2xl md:text-4xl text-gray-200 font-light leading-snug mb-10 italic">"${review.text}"</p>
                     <div class="flex flex-col items-center justify-center">
-                        <h4 class="text-lg font-bold text-white mb-1">${review.name}</h4>
-                        <p class="text-xs text-gray-500 uppercase tracking-widest">عميل</p>
+                        <h4 class="text-xl font-bold text-white mb-2">${review.name}</h4>
+                        <p class="text-xs text-gray-500 uppercase tracking-widest border border-white/10 px-3 py-1 rounded-full">عميل</p>
                     </div>
                 `;
                 reviewContainer.style.opacity = 1; 
