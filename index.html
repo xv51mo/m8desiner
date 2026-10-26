@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MOHAMMED | Creative Director & Designer</title>
+    <title>MOHAMMED | مصمم شعارات وهويات بصرية</title>
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -23,20 +23,15 @@
         
         /* تأثيرات النيون */
         .neon-text { text-shadow: 0 0 20px rgba(0, 210, 255, 0.5); }
-        .neon-border:hover { box-shadow: 0 0 30px rgba(157, 0, 255, 0.4); border-color: rgba(157, 0, 255, 0.8); }
         
         /* معرض الأعمال */
         .portfolio-item { display: none; animation: fadeIn 0.6s ease-in-out forwards; }
         .portfolio-item.active { display: block; }
-        .portfolio-overlay { background: linear-gradient(to top, rgba(0,0,0,0.9), transparent); opacity: 0; transition: all 0.4s ease; }
+        .portfolio-overlay { background: linear-gradient(to top, rgba(0,0,0,0.95), transparent); opacity: 0; transition: all 0.4s ease; }
         .portfolio-card:hover .portfolio-overlay { opacity: 1; }
-        .portfolio-card:hover img { transform: scale(1.1); }
-        
-        /* التقييمات المتجددة */
-        .review-card { animation: slideUp 0.5s ease-out forwards; }
+        .portfolio-card:hover img { transform: scale(1.1); filter: brightness(1.1); }
         
         @keyframes fadeIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
-        @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
         
         /* تخصيص السكرول */
         ::-webkit-scrollbar { width: 8px; }
@@ -54,30 +49,29 @@
         <div class="hidden md:flex gap-8 text-sm font-bold text-gray-300">
             <a href="#portfolio" class="hover:text-cyan-400 transition">الأعمال</a>
             <a href="#services" class="hover:text-cyan-400 transition">الخدمات</a>
-            <a href="#reviews" class="hover:text-cyan-400 transition">العملاء</a>
+            <a href="#reviews" class="hover:text-cyan-400 transition">آراء العملاء</a>
         </div>
         <a href="https://wa.me/9647828544008" target="_blank" class="bg-gradient-to-r from-cyan-500 to-purple-600 px-6 py-2.5 rounded-full text-sm font-bold hover:scale-105 transition shadow-[0_0_15px_rgba(0,210,255,0.4)]">
-            احجز مشروعك <i class="fa-solid fa-rocket ml-1"></i>
+            طلب تصميم <i class="fa-solid fa-pen-nib ml-1"></i>
         </a>
     </nav>
 
     <!-- Hero -->
     <header class="pt-40 pb-20 px-6 text-center relative overflow-hidden flex flex-col items-center justify-center min-h-[90vh]">
-        <!-- خلفية إضاءة -->
-        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-purple-600/20 blur-[120px] rounded-full -z-10"></div>
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-cyan-600/20 blur-[120px] rounded-full -z-10"></div>
         
         <div class="inline-block px-5 py-2 rounded-full border border-gray-700/50 text-gray-300 text-sm mb-8 glass">
-            🔥 حلول بصرية وتغليف فاخر للمشاريع التجارية
+            💎 نصنع هويات بصرية تعكس قوة مشروعك
         </div>
         <h1 class="text-5xl md:text-7xl font-black leading-tight mb-6 max-w-4xl">
-            نصمم <span class="bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 bg-clip-text text-transparent neon-text">الهوية البصرية</span> التي تجعل علامتك لا تُنسى
+            نصمم <span class="bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 bg-clip-text text-transparent neon-text">شعارات وهويات</span> ترسخ في ذهن عملائك
         </h1>
         <p class="text-gray-400 text-lg md:text-xl max-w-2xl mb-12">
-            من الشعارات الهندسية إلى التغليف ثلاثي الأبعاد، نقدم لك تصاميم تجذب الانتباه وترفع قيمة منتجك في السوق.
+            من الشعارات الهندسية الدقيقة إلى الهويات البصرية المتكاملة والتغليف الفاخر، نقدم لك تصاميم قوية ترفع من قيمة علامتك التجارية في السوق.
         </p>
         <div class="flex gap-4">
             <a href="#portfolio" class="px-8 py-4 bg-white text-black font-extrabold rounded-xl hover:bg-gray-200 transition">
-                شاهد الأعمال
+                استعرض الأعمال
             </a>
             <a href="#contact" class="px-8 py-4 glass border border-gray-700 font-bold rounded-xl hover:bg-gray-800 transition">
                 تواصل معي
@@ -89,83 +83,82 @@
     <section id="portfolio" class="py-24 px-6 max-w-7xl mx-auto">
         <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
             <div>
-                <h2 class="text-4xl font-black mb-3">معرض الأعمال</h2>
-                <p class="text-gray-400">تصفح أحدث التصاميم والمشاريع التجارية.</p>
+                <h2 class="text-4xl font-black mb-3">أعمالي الاحترافية</h2>
+                <p class="text-gray-400">مجموعة من أقوى الشعارات والهويات البصرية التي تم تنفيذها.</p>
             </div>
             <!-- فلاتر تفاعلية -->
-            <div class="flex gap-2 bg-gray-900/50 p-2 rounded-2xl border border-gray-800">
+            <div class="flex gap-2 bg-gray-900/50 p-2 rounded-2xl border border-gray-800 flex-wrap">
                 <button onclick="filterGallery('all')" class="filter-btn px-6 py-2 rounded-xl text-sm font-bold bg-gray-800 text-white transition">الكل</button>
+                <button onclick="filterGallery('logos')" class="filter-btn px-6 py-2 rounded-xl text-sm font-bold text-gray-400 hover:text-white transition">شعارات</button>
+                <button onclick="filterGallery('branding')" class="filter-btn px-6 py-2 rounded-xl text-sm font-bold text-gray-400 hover:text-white transition">هويات بصرية</button>
                 <button onclick="filterGallery('packaging')" class="filter-btn px-6 py-2 rounded-xl text-sm font-bold text-gray-400 hover:text-white transition">تغليف</button>
-                <button onclick="filterGallery('branding')" class="filter-btn px-6 py-2 rounded-xl text-sm font-bold text-gray-400 hover:text-white transition">هويات</button>
-                <button onclick="filterGallery('social')" class="filter-btn px-6 py-2 rounded-xl text-sm font-bold text-gray-400 hover:text-white transition">سوشيال ميديا</button>
             </div>
         </div>
 
-        <!-- شبكة الصور (جاهزة لاستبدال روابط الصور بصورك الحقيقية) -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="gallery">
             
-            <!-- عمل 1 (تغليف) -->
-            <div class="portfolio-item packaging active">
-                <div class="portfolio-card relative rounded-2xl overflow-hidden border border-gray-800 group h-[300px]">
-                    <img src="https://images.unsplash.com/photo-1628191139360-4083564d03fd?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover transition duration-500" alt="تغليف منتج">
+            <!-- عمل 1 (شعار) -->
+            <div class="portfolio-item logos active">
+                <div class="portfolio-card relative rounded-2xl overflow-hidden border border-gray-800 group h-[350px]">
+                    <img src="https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover transition duration-500" alt="تصميم شعار">
                     <div class="portfolio-overlay absolute inset-0 flex flex-col justify-end p-6">
-                        <span class="text-cyan-400 text-sm font-bold mb-1">Packaging Design</span>
-                        <h3 class="text-xl font-black text-white">تغليف علب عطور فاخرة</h3>
+                        <span class="text-cyan-400 text-sm font-bold mb-1">Logo Design</span>
+                        <h3 class="text-2xl font-black text-white">تصميم شعار هندسي فاخر</h3>
                     </div>
                 </div>
             </div>
 
-            <!-- عمل 2 (هوية) -->
+            <!-- عمل 2 (هوية بصرية) -->
             <div class="portfolio-item branding active">
-                <div class="portfolio-card relative rounded-2xl overflow-hidden border border-gray-800 group h-[300px]">
-                    <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover transition duration-500" alt="هوية بصرية">
+                <div class="portfolio-card relative rounded-2xl overflow-hidden border border-gray-800 group h-[350px]">
+                    <img src="https://images.unsplash.com/photo-1613426861511-cecb68c68ff8?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover transition duration-500" alt="هوية بصرية">
                     <div class="portfolio-overlay absolute inset-0 flex flex-col justify-end p-6">
                         <span class="text-purple-400 text-sm font-bold mb-1">Brand Identity</span>
-                        <h3 class="text-xl font-black text-white">هوية بصرية لمطعم</h3>
+                        <h3 class="text-2xl font-black text-white">هوية بصرية لشركة استثمار</h3>
                     </div>
                 </div>
             </div>
 
-            <!-- عمل 3 (سوشيال) -->
-            <div class="portfolio-item social active">
-                <div class="portfolio-card relative rounded-2xl overflow-hidden border border-gray-800 group h-[300px]">
-                    <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover transition duration-500" alt="سوشيال ميديا">
+            <!-- عمل 3 (تغليف) -->
+            <div class="portfolio-item packaging active">
+                <div class="portfolio-card relative rounded-2xl overflow-hidden border border-gray-800 group h-[350px]">
+                    <img src="https://images.unsplash.com/photo-1628191139360-4083564d03fd?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover transition duration-500" alt="تغليف منتجات">
                     <div class="portfolio-overlay absolute inset-0 flex flex-col justify-end p-6">
-                        <span class="text-pink-400 text-sm font-bold mb-1">Social Media</span>
-                        <h3 class="text-xl font-black text-white">حملة إعلانية رقمية</h3>
+                        <span class="text-pink-400 text-sm font-bold mb-1">Packaging</span>
+                        <h3 class="text-2xl font-black text-white">تغليف منتجات تجارية 3D</h3>
                     </div>
                 </div>
             </div>
 
-             <!-- عمل 4 (تغليف) -->
-             <div class="portfolio-item packaging active">
-                <div class="portfolio-card relative rounded-2xl overflow-hidden border border-gray-800 group h-[300px]">
-                    <img src="https://images.unsplash.com/photo-1586191552066-d52f9747970d?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover transition duration-500" alt="تغليف">
+             <!-- عمل 4 (شعار) -->
+             <div class="portfolio-item logos active">
+                <div class="portfolio-card relative rounded-2xl overflow-hidden border border-gray-800 group h-[350px]">
+                    <img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover transition duration-500" alt="شعار مطعم">
                     <div class="portfolio-overlay absolute inset-0 flex flex-col justify-end p-6">
-                        <span class="text-cyan-400 text-sm font-bold mb-1">Packaging Design</span>
-                        <h3 class="text-xl font-black text-white">أكياس تجارية ومطبوعات</h3>
+                        <span class="text-cyan-400 text-sm font-bold mb-1">Typography Logo</span>
+                        <h3 class="text-2xl font-black text-white">شعار تيبوغرافي لمطعم</h3>
                     </div>
                 </div>
             </div>
 
-            <!-- عمل 5 (هوية) -->
+            <!-- عمل 5 (هوية بصرية) -->
             <div class="portfolio-item branding active">
-                <div class="portfolio-card relative rounded-2xl overflow-hidden border border-gray-800 group h-[300px]">
-                    <img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover transition duration-500" alt="شعار">
+                <div class="portfolio-card relative rounded-2xl overflow-hidden border border-gray-800 group h-[350px]">
+                    <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover transition duration-500" alt="مطبوعات وهوية">
                     <div class="portfolio-overlay absolute inset-0 flex flex-col justify-end p-6">
-                        <span class="text-purple-400 text-sm font-bold mb-1">Logo Design</span>
-                        <h3 class="text-xl font-black text-white">تصميم شعار هندسي</h3>
+                        <span class="text-purple-400 text-sm font-bold mb-1">Corporate Identity</span>
+                        <h3 class="text-2xl font-black text-white">مطبوعات وهوية مؤسسية</h3>
                     </div>
                 </div>
             </div>
 
-            <!-- عمل 6 (سوشيال) -->
-            <div class="portfolio-item social active">
-                <div class="portfolio-card relative rounded-2xl overflow-hidden border border-gray-800 group h-[300px]">
-                    <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover transition duration-500" alt="تصميم إعلاني">
+            <!-- عمل 6 (تغليف) -->
+            <div class="portfolio-item packaging active">
+                <div class="portfolio-card relative rounded-2xl overflow-hidden border border-gray-800 group h-[350px]">
+                    <img src="https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover transition duration-500" alt="تغليف عطور">
                     <div class="portfolio-overlay absolute inset-0 flex flex-col justify-end p-6">
-                        <span class="text-pink-400 text-sm font-bold mb-1">3D Typography</span>
-                        <h3 class="text-xl font-black text-white">بوستر إعلاني 3D</h3>
+                        <span class="text-pink-400 text-sm font-bold mb-1">Luxury Packaging</span>
+                        <h3 class="text-2xl font-black text-white">تصميم علب عطور فخمة</h3>
                     </div>
                 </div>
             </div>
@@ -173,13 +166,12 @@
         </div>
     </section>
 
-    <!-- Dynamic Reviews Section -->
+    <!-- Dynamic Arabic Reviews Section -->
     <section id="reviews" class="py-24 px-6 relative overflow-hidden bg-gray-900/30">
-        <div class="max-w-4xl mx-auto text-center relative z-10">
-            <h2 class="text-3xl md:text-5xl font-black mb-12">تقييمات لا تتوقف 🚀</h2>
+        <div class="max-w-5xl mx-auto text-center relative z-10">
+            <h2 class="text-3xl md:text-5xl font-black mb-12">آراء شركاء النجاح 🌟</h2>
             
-            <!-- الصندوق اللي تتغير بيه التقييمات برمجياً -->
-            <div id="review-container" class="glass p-10 md:p-14 rounded-3xl border border-cyan-500/20 shadow-[0_0_40px_rgba(0,210,255,0.1)] min-h-[250px] flex flex-col justify-center items-center transition-all duration-500">
+            <div id="review-container" class="glass p-10 md:p-16 rounded-3xl border border-cyan-500/30 shadow-[0_0_50px_rgba(0,210,255,0.15)] min-h-[280px] flex flex-col justify-center items-center transition-all duration-500">
                 <!-- المحتوى يتولد بالجافاسكربت -->
             </div>
         </div>
@@ -187,27 +179,27 @@
 
     <!-- Unified Contact Section -->
     <section id="contact" class="py-24 px-6 max-w-5xl mx-auto text-center">
-        <h2 class="text-4xl font-black mb-8">خلينا نبدأ مشروعك القادم</h2>
-        <div class="glass p-8 rounded-3xl border border-gray-800 flex flex-wrap justify-center gap-6 md:gap-12">
+        <h2 class="text-4xl font-black mb-8">ابدأ مشروعك الاحترافي الآن</h2>
+        <div class="glass p-10 rounded-3xl border border-gray-800 flex flex-wrap justify-center gap-8 md:gap-14">
             
             <a href="https://wa.me/9647828544008" target="_blank" class="text-gray-400 hover:text-green-400 transition transform hover:-translate-y-2 text-center">
-                <i class="fa-brands fa-whatsapp text-4xl mb-3 block"></i>
+                <i class="fa-brands fa-whatsapp text-5xl mb-3 block"></i>
                 <span class="font-bold">WhatsApp</span>
             </a>
             <a href="https://instagram.com/m8desiner" target="_blank" class="text-gray-400 hover:text-pink-500 transition transform hover:-translate-y-2 text-center">
-                <i class="fa-brands fa-instagram text-4xl mb-3 block"></i>
+                <i class="fa-brands fa-instagram text-5xl mb-3 block"></i>
                 <span class="font-bold">Instagram</span>
             </a>
             <a href="https://tiktok.com/@m8desiner" target="_blank" class="text-gray-400 hover:text-white transition transform hover:-translate-y-2 text-center">
-                <i class="fa-brands fa-tiktok text-4xl mb-3 block"></i>
+                <i class="fa-brands fa-tiktok text-5xl mb-3 block"></i>
                 <span class="font-bold">TikTok</span>
             </a>
             <a href="https://x.com/m8desiner" target="_blank" class="text-gray-400 hover:text-blue-400 transition transform hover:-translate-y-2 text-center">
-                <i class="fa-brands fa-x-twitter text-4xl mb-3 block"></i>
+                <i class="fa-brands fa-x-twitter text-5xl mb-3 block"></i>
                 <span class="font-bold">X (Twitter)</span>
             </a>
             <a href="https://t.me/m8desiner" target="_blank" class="text-gray-400 hover:text-cyan-400 transition transform hover:-translate-y-2 text-center">
-                <i class="fa-brands fa-telegram text-4xl mb-3 block"></i>
+                <i class="fa-brands fa-telegram text-5xl mb-3 block"></i>
                 <span class="font-bold">Telegram</span>
             </a>
             
@@ -221,7 +213,6 @@
     <script>
         // 1. نظام فلترة الأعمال
         function filterGallery(category) {
-            // تلوين الأزرار
             const buttons = document.querySelectorAll('.filter-btn');
             buttons.forEach(btn => {
                 btn.classList.remove('bg-gray-800', 'text-white');
@@ -230,7 +221,6 @@
             event.target.classList.add('bg-gray-800', 'text-white');
             event.target.classList.remove('text-gray-400');
 
-            // فرز الصور
             const items = document.querySelectorAll('.portfolio-item');
             items.forEach(item => {
                 if(category === 'all' || item.classList.contains(category)) {
@@ -241,16 +231,14 @@
             });
         }
 
-        // 2. نظام التقييمات المتجددة (Dynamic Reviews)
+        // 2. نظام التقييمات المتجددة (عربية فقط - شعارات وهويات قوية)
         const reviews = [
-            { name: "علي الشمري", role: "مؤسس شركة", text: "شغل احترافي جداً، تفاصيل التغليف ودقة المقاسات للمطبعة جانت بيرفكت. أنصح بالتعامل وياه.", color: "from-blue-500 to-cyan-500" },
-            { name: "Sarah Michael", role: "Marketing Director", text: "The brand identity Mohammed created for us is out of this world. Highly responsive and creative!", color: "from-purple-500 to-pink-500" },
-            { name: "مصطفى العراقي", role: "صاحب مطعم", text: "اللوكو والمنيو طلعوا أحلى من اللي توقعته، ألوان النيون والتصميم العصري جابوا تفاعل رهيب.", color: "from-green-400 to-emerald-600" },
-            { name: "James Anderson", role: "E-commerce Owner", text: "Incredible packaging design! It made our product look premium and boosted our sales.", color: "from-orange-400 to-red-500" },
-            { name: "نور حسين", role: "مديرة تسويق", text: "سرعة بالإنجاز وأفكار خارج الصندوق. تصاميم السوشيال ميديا 3D نقلت صفحتنا لمستوى ثاني.", color: "from-pink-500 to-rose-500" },
-            { name: "أحمد الدليمي", role: "صاحب براند عطور", text: "الباكجنك اللي صممه محمد للعطور مالتنا خلى الزبائن ينبهرون بالعلبة قبل العطر.", color: "from-cyan-500 to-blue-600" },
-            { name: "David Chen", role: "Tech Startup", text: "Brilliant vector art and typography skills. @m8desiner is a true professional.", color: "from-indigo-500 to-purple-600" },
-            { name: "زينب محمد", role: "صاحبة متجر إلكتروني", text: "تعامل راقي وتعديلات سريعة، استلمت الهوية البصرية كاملة وكلش فخمة. شكراً إبداعك.", color: "from-yellow-400 to-orange-500" }
+            { name: "علي الشمري", role: "مؤسس شركة تجارية", text: "الشعار والهوية البصرية اللي صممها محمد نقلت شركتنا لمستوى احترافي ثقيل. تفاصيل هندسية دقيقة وتصميم جداً قوي ومميز.", color: "from-blue-500 to-cyan-500" },
+            { name: "سارة الخالدي", role: "مديرة تسويق", text: "شغل فخم ومرتب. تصميم اللوكو كلش احترافي والتغليف خلى منتجاتنا تبرز بالسوق وتلفت انتباه الزبائن فوراً.", color: "from-purple-500 to-pink-500" },
+            { name: "مصطفى العراقي", role: "صاحب سلسلة مطاعم", text: "أفضل مصمم تعاملت وياه، فهم الفكرة بسرعة وصمملنا هوية بصرية متكاملة وشعار يرسخ بالبال من أول نظرة.", color: "from-green-400 to-emerald-600" },
+            { name: "حسين الدليمي", role: "رئيس تنفيذي", text: "احترافية عالية بتصميم الشعارات. الشعار الجديد صار واجهة قوية لمشروعنا، عاشت إيدك على هذا الإبداع والتميز.", color: "from-orange-400 to-red-500" },
+            { name: "نور الربيعي", role: "صاحبة براند عطور", text: "الباكجنك وتصميم العلب جان تحفة فنية. مقاسات دقيقة للمطبعة والزبائن يسألون عن فخامة التغليف قبل العطر نفسه!", color: "from-pink-500 to-rose-500" },
+            { name: "أحمد الجبوري", role: "مؤسس تطبيق ذكي", text: "لمسة فنية وإبداع بالهوية البصرية. الألوان واختيار الخطوط يعكسون فخامة وقوة المشروع بشكل مثالي.", color: "from-cyan-500 to-blue-600" }
         ];
 
         const container = document.getElementById('review-container');
@@ -258,32 +246,31 @@
 
         function updateReview() {
             const review = reviews[currentIndex];
-            container.style.opacity = 0; // إخفاء للأنيميشن
+            container.style.opacity = 0; 
             
             setTimeout(() => {
                 container.innerHTML = `
                     <div class="flex justify-center text-yellow-400 mb-6 text-xl gap-1">
                         <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
                     </div>
-                    <p class="text-xl md:text-2xl text-gray-200 leading-relaxed mb-8 font-medium italic">"${review.text}"</p>
-                    <div class="flex items-center gap-4 justify-center">
-                        <div class="w-12 h-12 rounded-full bg-gradient-to-br ${review.color} flex items-center justify-center font-bold text-white shadow-lg">
+                    <p class="text-xl md:text-3xl text-gray-100 leading-relaxed mb-10 font-bold">"${review.text}"</p>
+                    <div class="flex items-center gap-5 justify-center">
+                        <div class="w-14 h-14 rounded-full bg-gradient-to-br ${review.color} flex items-center justify-center font-black text-white text-xl shadow-lg border-2 border-white/20">
                             ${review.name.charAt(0)}
                         </div>
                         <div class="text-right">
-                            <h4 class="text-lg font-black text-white">${review.name}</h4>
-                            <p class="text-sm text-cyan-400">${review.role}</p>
+                            <h4 class="text-xl font-black text-white">${review.name}</h4>
+                            <p class="text-sm font-bold text-cyan-400">${review.role}</p>
                         </div>
                     </div>
                 `;
-                container.style.opacity = 1; // إظهار
+                container.style.opacity = 1; 
                 currentIndex = (currentIndex + 1) % reviews.length;
-            }, 400); // سرعة الاختفاء
+            }, 400); 
         }
 
-        // تشغيل التقييمات فوراً، ثم تغييرها كل 4.5 ثوانٍ
         updateReview();
-        setInterval(updateReview, 4500);
+        setInterval(updateReview, 5000); // تغيير التقييم كل 5 ثواني
 
     </script>
 </body>
