@@ -89,12 +89,11 @@ overflow:hidden;cursor:pointer;transition:.3s}
 
 .art{aspect-ratio:4/4.5;position:relative;overflow:hidden;
 display:grid;place-items:center;isolation:isolate;
-background:radial-gradient(circle at 70% 20%,var(--glow),transparent 50%),
-linear-gradient(145deg,var(--c1),var(--c2))}
+background:#050505;}
 .art img{width:100%;height:100%;object-fit:cover;transition:transform 0.6s ease}
 .work-card:hover .art img{transform:scale(1.05)}
 .art-number{position:absolute;top:15%;right:12%;font-size:11px;
-letter-spacing:2px;color:rgba(255,255,255,0.8);direction:ltr;font-family:monospace;background:rgba(0,0,0,0.6);padding:3px 8px;border-radius:6px}
+letter-spacing:2px;color:rgba(255,255,255,0.9);direction:ltr;font-family:monospace;background:rgba(0,0,0,0.7);padding:4px 10px;border-radius:6px;z-index:2}
 
 .work-info{padding:16px 20px;display:flex;align-items:center;
 justify-content:space-between;gap:10px}
@@ -293,24 +292,8 @@ width:40px;height:40px;font-size:22px;display:grid;place-items:center;transition
       <p>قصص نجاح حقيقية وتجارب إيجابية ملهمة من عملائنا في مختلف أنحاء العالم.</p>
     </div>
     
-    <!-- شبكة التقييمات (السابقة والمولدة والمتجددة) -->
-    <div class="reviews" id="reviews-grid">
-      <article class="review">
-        <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-        <blockquote>"التعامل مع محمد كان نقطة تحول لبراندنا! التصاميم فخمة للغاية وخطفت انتباه زبائننا من أول يوم. أنصح بالتعامل معه وبشدة! 🔥"</blockquote>
-        <div class="reviewer"><div class="avatar">ع</div><div><strong>علي حسن</strong><small>عميل مميز ⭐</small></div></div>
-      </article>
-      <article class="review">
-        <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-        <blockquote>"خدمة احترافية، ذوق رفيع، وسرعة في الإنجاز لا تُعوض. الهوية البصرية طلعت أحلى من كل توقعاتنا! 👑"</blockquote>
-        <div class="reviewer"><div class="avatar">S</div><div><strong>Sophia Miller</strong><small>عميل مميز ⭐</small></div></div>
-      </article>
-      <article class="review">
-        <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-        <blockquote>"أفضل مصمم جرافيك تعاملت معه على الإطلاق! إبداع بلا حدود واهتمام مذهل بكافة التفاصيل الصغيرة. 🚀"</blockquote>
-        <div class="reviewer"><div class="avatar">م</div><div><strong>مريم أحمد</strong><small>عميل مميز ⭐</small></div></div>
-      </article>
-    </div>
+    <!-- شبكة التقييمات -->
+    <div class="reviews" id="reviews-grid"></div>
 
     <!-- صندوق إضافة تقييم جديد تفاعلي -->
     <div class="review-form-box">
@@ -374,16 +357,18 @@ width:40px;height:40px;font-size:22px;display:grid;place-items:center;transition
 </div>
 
 <script>
-// مصفوفة صور التصاميم الاحترافية الواضحة بدلاً من الرسوم الهندسية البسيطة
+// ربط التصاميم الحقيقية الفخمة التي أرسلتها
 const realDesigns = [
- {title:"يقظة الفكرة", type:"هوية بصرية", img:"https://images.unsplash.com/photo-1541701494587-cb58502866ab?q=80&w=800&auto=format&fit=crop"},
- {title:"مطر الأفكار", type:"شعارات", img:"https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800&auto=format&fit=crop"},
- {title:"الحقيقة والبحث", type:"سوشيال ميديا", img:"https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=800&auto=format&fit=crop"},
- {title:"أفق الهروب", type:"فن مفاهيمي", img:"https://images.unsplash.com/photo-1579783902614-a3fb3927b675?q=80&w=800&auto=format&fit=crop"},
- {title:"تلاحم الفكر", type:"هوية بصرية", img:"https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=800&auto=format&fit=crop"},
- {title:"ضغط الوعي", type:"شعارات", img:"https://images.unsplash.com/photo-1634152962476-4b8a00e1915c?q=80&w=800&auto=format&fit=crop"},
- {title:"نبض الإبداع", type:"سوشيال ميديا", img:"https://images.unsplash.com/photo-1557672172-298e090bd0f1?q=80&w=800&auto=format&fit=crop"},
- {title:"فضاء التصميم", type:"فن مفاهيمي", img:"https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?q=80&w=800&auto=format&fit=crop"}
+ {title:"يقظة الفكرة", type:"هوية بصرية", img:"image_26.png"},
+ {title:"الحقيقة والبحث", type:"شعارات", img:"image_27.png"},
+ {title:"احزم حقيبتك", type:"سوشيال ميديا", img:"image_28.png"},
+ {title:"مطر الأفكار", type:"فن مفاهيمي", img:"image_29.png"},
+ {title:"البحث العميق", type:"هوية بصرية", img:"image_30.png"},
+ {title:"أيقونة السوشيال", type:"شعارات", img:"image_31.png"},
+ {title:"أفق الوعي", type:"سوشيال ميديا", img:"image_32.png"},
+ {title:"تلاحم الفكر", type:"فن مفاهيمي", img:"image_33.png"},
+ {title:"ضغط الوعي", type:"هوية بصرية", img:"image_34.png"},
+ {title:"عنصر الزمن", type:"شعارات", img:"image_35.png"}
 ];
 
 const gallery=document.getElementById("gallery");
@@ -464,11 +449,11 @@ document.getElementById("modal").addEventListener("click",e=>{
 });
 document.addEventListener("keydown",e=>{if(e.key==="Escape")closeModal()});
 
-// نظام التقييمات التفاعلي مع التوليد المستمر لتجارب جديدة
+// نظام التقييمات السابقة والجديدة مع التوليد والحركة المستمرة
 const initialReviews = [
- {name: "أحمد الدليمي", text: "تصميم الهوية البصرية كان تحفة فنية بكل ما تحمله الكلمة من معنى! شكراً لإبداعك المستمر 👑", stars: 5},
- {name: "Sarah Vance", text: "تعامل راقي جداً ودقة متناهية في المواعيد. بوستات السوشيال ميديا رفعت مبيعاتنا بشكل ملحوظ 🚀", stars: 5},
- {name: "سارة الخالدي", text: "أفضل مصمم تعاملت معه، أفكار خارج الصندوق وتنفيذ فخم يليق بالبراندات العالمية ✨", stars: 5}
+ {name: "علي حسن", text: "التصميم مرتب وواضح، والألوان متناسقة مع الفكرة التي كنت أبحث عنها. التواصل كان سهلاً والتعديلات تمت باهتمام. 🔥", stars: 5},
+ {name: "Sophia Miller", text: "أعجبني الاهتمام بالتفاصيل وطريقة تحويل الملاحظات إلى نتيجة بصرية متماسكة. النتيجة كانت أنيقة وبسيطة 👑", stars: 5},
+ {name: "مريم أحمد", text: "فهم الفكرة من البداية وفر علينا الوقت. العمل النهائي منظم والتسليم كان واضحاً وسهل الاستخدام 🚀", stars: 5}
 ];
 
 const generatedPool = [
@@ -493,20 +478,19 @@ function renderReviews(){
 
 renderReviews();
 
-// توليد تجارب وتقييمات جديدة تلقائياً بشكل مستمر
+// توليد تجارب وتقييمات جديدة تلقائياً بشكل مستمر وتفاعلي
 let poolIndex = 0;
 setInterval(() => {
  const newRev = generatedPool[poolIndex % generatedPool.length];
- // إضافة تقييم جديد في البداية
  allReviews.unshift({
-  name: newRev.name + " (محدث)",
+  name: newRev.name,
   text: newRev.text,
   stars: newRev.stars
  });
- if(allReviews.length > 6) allReviews.pop(); // الحفاظ على العدد
+ if(allReviews.length > 6) allReviews.pop();
  renderReviews();
  poolIndex++;
-}, 8000);
+}, 7000);
 
 // التفاعل مع النجوم وإرسال التقييم
 let selectedRating = 5;
