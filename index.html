@@ -25,46 +25,61 @@
     <style>
         body { 
             font-family: 'Tajawal', sans-serif; 
-            background-color: #010101; 
+            background-color: #050505; 
             color: #ffffff; 
             overflow-x: hidden; 
             scroll-behavior: smooth; 
         }
         
         .glass-nav { 
-            background: rgba(1, 1, 1, 0.8); 
+            background: rgba(5, 5, 5, 0.85); 
             backdrop-filter: blur(24px); 
-            border-bottom: 1px solid rgba(255, 255, 255, 0.04); 
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05); 
         }
-        .text-glow { text-shadow: 0 0 40px rgba(0, 240, 255, 0.4); }
+        
+        .text-glow { text-shadow: 0 0 40px rgba(0, 240, 255, 0.3); }
         .icon-glow:hover { box-shadow: 0 0 25px rgba(255, 255, 255, 0.15); border-color: rgba(255, 255, 255, 0.4); }
         
+        /* بطاقات الأعمال بستايل بنترست / بيهانس */
         .design-card {
             position: relative;
             overflow: hidden;
-            border-radius: 8px;
-            background: #050505;
-            aspect-ratio: 1 / 1;
+            border-radius: 12px;
+            background: #111;
+            aspect-ratio: 4 / 5; /* أبعاد مناسبة لبوستات السوشيال ميديا والشعارات */
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            cursor: pointer;
         }
         .design-card img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1), filter 0.5s ease;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
         }
         .design-card:hover img {
-            transform: scale(1.08);
-            filter: brightness(0.6);
+            transform: scale(1.05);
+        }
+        .design-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.2) 50%, transparent 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 20px;
+        }
+        .design-card:hover .design-overlay {
+            opacity: 1;
         }
         
-        ::-webkit-scrollbar { width: 4px; }
-        ::-webkit-scrollbar-track { background: #010101; }
-        ::-webkit-scrollbar-thumb { background: #222; border-radius: 10px; }
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-track { background: #050505; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 10px; }
         ::-webkit-scrollbar-thumb:hover { background: #00F0FF; }
 
-        .fade-transition {
-            transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out;
-        }
+        .fade-transition { transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out; }
     </style>
 </head>
 <body class="antialiased selection:bg-neonBlue selection:text-black">
@@ -85,14 +100,14 @@
     </nav>
 
     <header id="home" class="pt-48 pb-32 px-6 text-center relative flex flex-col items-center justify-center min-h-[90vh]">
-        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-cyan-900/10 blur-[130px] rounded-full -z-10 pointer-events-none"></div>
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-900/10 blur-[150px] rounded-full -z-10 pointer-events-none"></div>
         
         <h1 class="text-5xl md:text-7xl font-black leading-tight mb-8 max-w-4xl text-white tracking-tighter">
-            بصمة بصرية <br>
-            <span class="text-white text-glow">استثنائية لمشروعك</span>
+            تصاميم جرافيك <br>
+            <span class="text-white text-glow">تصنع الفارق البصري</span>
         </h1>
         <p class="text-gray-400 text-lg md:text-xl max-w-2xl mb-12 font-light leading-relaxed">
-            تصاميم ترتقي بالعلامات التجارية. شعارات وبوستات سوشيال ميديا تُصنع بهدوء، دقة، وفخامة.
+            مختص في ابتكار شعارات ذكية وتصاميم سوشيال ميديا احترافية تلفت الانتباه وتزيد من قوة علامتك التجارية.
         </p>
         <a href="#portfolio" class="px-10 py-4 bg-white text-black font-bold rounded-full hover:bg-gray-200 transition duration-300 text-sm tracking-wide">
             استعرض الأعمال
@@ -102,17 +117,18 @@
     <section id="about" class="py-24 px-6 max-w-4xl mx-auto text-center border-t border-white/5">
         <h2 class="text-xs font-bold tracking-[0.3em] text-gray-500 uppercase mb-8">من أنا</h2>
         <p class="text-2xl md:text-3xl text-gray-200 font-light leading-relaxed">
-            أنا محمد، مصمم جرافيك شغوف بتحويل الأفكار المجردة إلى هويات بصرية ناطقة. أختص في تصميم <span class="font-bold text-white">الشعارات ومنشورات السوشيال ميديا</span> بأسلوب عصري يبتعد عن التعقيد ويبرز جوهر علامتك التجارية، لأمنح مشروعك حضوراً رقمياً فخماً ومميزاً في السوق.
+            أنا محمد، مصمم جرافيك أؤمن بأن التصميم ليس مجرد شكل، بل رسالة واضحة. أركز على <span class="font-bold text-white">تصميم الشعارات وتطوير الهويات البصرية ومنشورات السوشيال ميديا</span> بأسلوب يدمج بين الفخامة والوضوح، لضمان ظهور مشروعك بأفضل صورة ممكنة في السوق الرقمي.
         </p>
     </section>
 
-    <section id="portfolio" class="py-32 px-4 max-w-[1600px] mx-auto border-t border-white/5">
+    <!-- معرض الأعمال (تصاميم جرافيك وسوشيال ميديا) -->
+    <section id="portfolio" class="py-32 px-4 max-w-[1400px] mx-auto border-t border-white/5">
         <div class="text-center mb-16">
             <h2 class="text-4xl font-black mb-4 text-white">الأعمال</h2>
-            <p class="text-gray-500 font-light">مزيج من الشعارات وتصاميم السوشيال ميديا الإبداعية.</p>
+            <p class="text-gray-500 font-light">نماذج من الشعارات وتصاميم السوشيال ميديا الإبداعية.</p>
         </div>
 
-        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 md:gap-4" id="gallery-container">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6" id="gallery-container">
             <!-- الأعمال تتولد هنا -->
         </div>
 
@@ -160,34 +176,41 @@
         
         const totalDesignsLimit = 100;
         let currentLoaded = 0;
-        const loadBatchSize = 16; 
+        const loadBatchSize = 12; 
 
-        // قائمة صور فخمة عالية الدقة (بديل قوي لا يتوقف)
+        // قائمة بروابط لتصاميم جرافيك، بوسترات، ושعارات (Placeholders)
+        // ** استبدل هذه الروابط بروابط أعمالك الحقيقية من بنترست أو بيهانس **
         const premiumImages = [
-            "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=600&auto=format&fit=crop",
-            "https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=600&auto=format&fit=crop",
-            "https://images.unsplash.com/photo-1614850523459-c2f4c699c52e?q=80&w=600&auto=format&fit=crop",
-            "https://images.unsplash.com/photo-1634152962476-4b8a00e1915c?q=80&w=600&auto=format&fit=crop",
-            "https://images.unsplash.com/photo-1550684376-efc484ca5e83?q=80&w=600&auto=format&fit=crop",
-            "https://images.unsplash.com/photo-1604871000636-074fa5117945?q=80&w=600&auto=format&fit=crop",
-            "https://images.unsplash.com/photo-1557672172-298e090bd0f1?q=80&w=600&auto=format&fit=crop",
-            "https://images.unsplash.com/photo-1518640467707-6811f4a6ab73?q=80&w=600&auto=format&fit=crop",
-            "https://images.unsplash.com/photo-1633613286991-611fe299c4eb?q=80&w=600&auto=format&fit=crop",
-            "https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?q=80&w=600&auto=format&fit=crop"
+            "https://images.unsplash.com/photo-1626785774573-4b799315345d?q=80&w=800&auto=format&fit=crop", // Logo/Typography
+            "https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=800&auto=format&fit=crop", // Social Media Grid
+            "https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=800&auto=format&fit=crop", // Ad Poster
+            "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=800&auto=format&fit=crop", // Branding
+            "https://images.unsplash.com/photo-1613426861511-cecb68c68ff8?q=80&w=800&auto=format&fit=crop", // Minimalist Logo
+            "https://images.unsplash.com/photo-1558655146-d09347e92766?q=80&w=800&auto=format&fit=crop", // Mockup
+            "https://images.unsplash.com/photo-1586191552066-d52f9747970d?q=80&w=800&auto=format&fit=crop", // Dark Packaging
+            "https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=800&auto=format&fit=crop", // Cyber/Neon graphic
+            "https://images.unsplash.com/photo-1628191139360-4083564d03fd?q=80&w=800&auto=format&fit=crop", // Abstract 3D Cover
+            "https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=800&auto=format&fit=crop"  // Dark Aesthetic setup
         ];
+
+        const designCategories = ["بوست سوشيال ميديا", "تصميم شعار", "بوستر إعلاني", "هوية بصرية", "تصميم جرافيك"];
 
         function generateDesigns(count) {
             let html = '';
             const end = Math.min(currentLoaded + count, totalDesignsLimit);
             
             for (let i = currentLoaded + 1; i <= end; i++) {
-                // اختيار صورة وتطبيق فلتر CSS بسيط لتغيير الألوان برمجياً وجعل كل صورة تبدو مختلفة
+                // سحب صورة وفئة عشوائية
                 const imgUrl = premiumImages[i % premiumImages.length];
-                const hueShift = (i * 45) % 360; 
+                const category = designCategories[Math.floor(Math.random() * designCategories.length)];
                 
                 html += `
                     <div class="design-card">
-                        <img src="${imgUrl}" loading="lazy" alt="تصميم إبداعي ${i}" style="filter: hue-rotate(${hueShift}deg) brightness(0.8);">
+                        <img src="${imgUrl}" loading="lazy" alt="تصميم إبداعي ${i}">
+                        <div class="design-overlay">
+                            <span class="text-neonBlue text-xs font-bold tracking-widest mb-1 font-mono">PROJECT ${i}</span>
+                            <h3 class="text-xl font-bold text-white">${category}</h3>
+                        </div>
                     </div>
                 `;
             }
@@ -204,7 +227,7 @@
             generateDesigns(loadBatchSize);
         }
 
-        generateDesigns(loadBatchSize);
+        generateDesigns(loadBatchSize); // تحميل أول دفعة
 
         const reviews = [
             { name: "أحمد الدليمي", text: "تصميم الشعار كان يعكس فخامة المشروع بالضبط. دقة واحترافية لا توصف." },
@@ -228,7 +251,7 @@
                     <p class="text-xl md:text-3xl text-gray-200 font-light leading-relaxed mb-6 italic max-w-3xl">"${review.text}"</p>
                     <div class="flex flex-col items-center justify-center">
                         <h4 class="text-lg font-bold text-white">${review.name}</h4>
-                        <p class="text-xs text-gray-500 mt-1">عميل</p>
+                        <p class="text-xs text-gray-500 mt-1 uppercase tracking-widest">عميل</p>
                     </div>
                 `;
                 reviewContainer.classList.remove('opacity-0', 'translate-y-4');
