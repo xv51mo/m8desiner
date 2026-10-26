@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MOHAMMED | مصمم هويات بصرية وتغليف</title>
+    <!-- خط تجوال من Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <!-- FontAwesome للأيقونات -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        tajawal: ['Tajawal', 'sans-serif'],
+                    },
+                    colors: {
+                        brandDark: '#0B0D17',
+                        brandBlue: '#00D2FF',
+                        brandPurple: '#9D00FF',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: #070913;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+        .neon-glow-blue {
+            text-shadow: 0 0 15px rgba(0, 210, 255, 0.6);
+        }
+        .neon-box {
+            box-shadow: 0 0 25px rgba(157, 0, 255, 0.15);
+            border: 1px solid rgba(0, 210, 255, 0.2);
+        }
+        .neon-box:hover {
+            box-shadow: 0 0 35px rgba(0, 210, 255, 0.35);
+            border-color: rgba(0, 210, 255, 0.6);
+        }
+        .glass {
+            background: rgba(18, 22, 40, 0.7);
+            backdrop-filter: blur(12px);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header / Nav -->
+    <nav class="fixed w-full top-0 z-50 glass border-b border-gray-800 px-6 py-4 flex justify-between items-center">
+        <div class="flex items-center gap-3">
+            <span class="text-2xl font-black bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">M8DESIGNER</span>
+        </div>
+        <div class="hidden md:flex gap-6 text-sm text-gray-300 font-medium">
+            <a href="#about" class="hover:text-cyan-400 transition">عني</a>
+            <a href="#services" class="hover:text-cyan-400 transition">خدماتي</a>
+            <a href="#portfolio" class="hover:text-cyan-400 transition">الأعمال</a>
+            <a href="#contact" class="hover:text-cyan-400 transition">تواصل معي</a>
+        </div>
+        <a href="https://wa.me/9647828544008" target="_blank" class="bg-gradient-to-r from-cyan-500 to-purple-600 px-5 py-2 rounded-full text-sm font-bold shadow-lg shadow-cyan-500/20 hover:opacity-90 transition">
+            واتساب مباشر <i class="fa-brands fa-whatsapp mr-1"></i>
+        </a>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="pt-36 pb-20 px-6 max-w-5xl mx-auto text-center relative">
+        <div class="inline-block px-4 py-1.5 rounded-full bg-purple-900/30 border border-purple-500/40 text-purple-300 text-sm mb-6">
+            ✨ نصنع لعلامتك التجارية هوية تترك أثراً
+        </div>
+        <h1 class="text-4xl md:text-6xl font-black leading-tight mb-6">
+            التصميم مو بس شكل، هو <span class="bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-500 bg-clip-text text-transparent">قصة مشروعك</span> اللي تبني ثقة زبائنك
+        </h1>
+        <p class="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
+            أنا محمد، مصمم هويات بصرية وتغليف فاخر. أساعد المشاريع على الظهور بمظهر احترافي ومميز بالسوق.
+        </p>
+        <div class="flex flex-wrap justify-center gap-4">
+            <a href="https://wa.me/9647828544008" target="_blank" class="px-8 py-3.5 bg-cyan-500 hover:bg-cyan-400 text-gray-950 font-bold rounded-xl shadow-lg shadow-cyan-500/30 transition flex items-center gap-2">
+                <i class="fa-brands fa-whatsapp text-lg"></i> ابدأ مشروعك الآن
+            </a>
+            <a href="https://t.me/m8desiner" target="_blank" class="px-8 py-3.5 glass hover:bg-gray-800 text-white font-bold rounded-xl border border-gray-700 transition flex items-center gap-2">
+                <i class="fa-brands fa-telegram text-lg text-cyan-400"></i> قناة التيليجرام
+            </a>
+        </div>
+    </header>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 px-6 max-w-6xl mx-auto">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-extrabold mb-3">خدماتي الإبداعية</h2>
+            <p class="text-gray-400">حلول بصرية مصممة لرفع قيمة علامتك ومبيعاتك</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Service 1 -->
+            <div class="glass p-8 rounded-2xl neon-box transition duration-300">
+                <div class="w-14 h-14 bg-cyan-500/10 border border-cyan-500/30 rounded-xl flex items-center justify-center text-cyan-400 text-2xl mb-6">
+                    <i class="fa-solid fa-pen-nib"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-3">تصميم الهويات البصرية</h3>
+                <p class="text-gray-400 text-sm leading-relaxed">بناء الشعارات الهندسية، اختيار الألوان ونمط الخطوط، ودليل كامل يضمن تناسق ظهور مشروعك في كل مكان.</p>
+            </div>
+            <!-- Service 2 -->
+            <div class="glass p-8 rounded-2xl neon-box transition duration-300">
+                <div class="w-14 h-14 bg-purple-500/10 border border-purple-500/30 rounded-xl flex items-center justify-center text-purple-400 text-2xl mb-6">
+                    <i class="fa-solid fa-box-open"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-3">التغليف والمطبوعات الفاخرة</h3>
+                <p class="text-gray-400 text-sm leading-relaxed">تصميم علب، أكياس، وليبل المنتجات بمقاسات هندسية دقيقة جاهزة فوراً للمطابع، مع موك أب ثلاثي الأبعاد واقعي.</p>
+            </div>
+            <!-- Service 3 -->
+            <div class="glass p-8 rounded-2xl neon-box transition duration-300">
+                <div class="w-14 h-14 bg-pink-500/10 border border-pink-500/30 rounded-xl flex items-center justify-center text-pink-400 text-2xl mb-6">
+                    <i class="fa-solid fa-bullhorn"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-3">تصاميم السوشيال ميديا</h3>
+                <p class="text-gray-400 text-sm leading-relaxed">منشورات وبنرات إعلانية احترافية تعتمد على المعالجة الرقمية لتلفت انتباه المتابعين وتزيد تفاعل صفحتك ومبيعاتها.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact & Action Footer -->
+    <section id="contact" class="py-20 px-6 max-w-4xl mx-auto text-center">
+        <div class="glass p-10 md:p-14 rounded-3xl border border-cyan-500/30 neon-box">
+            <h2 class="text-3xl md:text-4xl font-extrabold mb-4">جاهز لنقل مشروعك للمستوى التالي؟</h2>
+            <p class="text-gray-300 mb-8 max-w-lg mx-auto">تواصل معي اليوم ونناقش أفكار مشروعك ونبدأ بتحويلها إلى واقع بصري يبهر زبائنك.</p>
+            
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-6 text-lg font-bold">
+                <a href="https://wa.me/9647828544008" class="text-cyan-400 hover:underline flex items-center gap-2">
+                    <i class="fa-brands fa-whatsapp text-2xl"></i> +964 782 854 4008
+                </a>
+                <span class="hidden sm:inline text-gray-600">|</span>
+                <a href="https://instagram.com/m8desiner" target="_blank" class="text-pink-400 hover:underline flex items-center gap-2">
+                    <i class="fa-brands fa-instagram text-2xl"></i> @m8desiner
+                </a>
+                <span class="hidden sm:inline text-gray-600">|</span>
+                <a href="https://t.me/m8desiner" target="_blank" class="text-blue-400 hover:underline flex items-center gap-2">
+                    <i class="fa-brands fa-telegram text-2xl"></i> Telegram
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-8 text-center text-gray-600 text-sm border-t border-gray-900">
+        جميع الحقوق محفوظة &copy; 2026 المصمم محمد | @m8desiner
+    </footer>
+
+</body>
+</html>
