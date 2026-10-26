@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MOHAMMED | مصمم جرافيك</title>
-    <!-- توحيد الخطوط: استخدام خط تجوال الراقي -->
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -32,7 +31,6 @@
             scroll-behavior: smooth; 
         }
         
-        /* تأثيرات الزجاج والإضاءة الراقية */
         .glass-nav { 
             background: rgba(1, 1, 1, 0.8); 
             backdrop-filter: blur(24px); 
@@ -41,7 +39,6 @@
         .text-glow { text-shadow: 0 0 40px rgba(0, 240, 255, 0.4); }
         .icon-glow:hover { box-shadow: 0 0 25px rgba(255, 255, 255, 0.15); border-color: rgba(255, 255, 255, 0.4); }
         
-        /* بطاقات الأعمال (نظيفة، بدون زوائد) */
         .design-card {
             position: relative;
             overflow: hidden;
@@ -60,13 +57,11 @@
             filter: brightness(0.6);
         }
         
-        /* تخصيص السكرول */
         ::-webkit-scrollbar { width: 4px; }
         ::-webkit-scrollbar-track { background: #010101; }
         ::-webkit-scrollbar-thumb { background: #222; border-radius: 10px; }
         ::-webkit-scrollbar-thumb:hover { background: #00F0FF; }
 
-        /* حركة سلسة للتقييمات */
         .fade-transition {
             transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out;
         }
@@ -74,7 +69,6 @@
 </head>
 <body class="antialiased selection:bg-neonBlue selection:text-black">
 
-    <!-- القائمة العلوية المنظمة والمبسطة -->
     <nav class="fixed w-full top-0 z-50 glass-nav px-6 py-5 flex justify-between items-center">
         <a href="#home" class="text-xl font-black tracking-widest text-white uppercase hover:text-neonBlue transition">
             @M8DESINER
@@ -90,9 +84,7 @@
         </a>
     </nav>
 
-    <!-- الرئيسية (Hero) - خالية من الازدحام -->
     <header id="home" class="pt-48 pb-32 px-6 text-center relative flex flex-col items-center justify-center min-h-[90vh]">
-        <!-- إضاءة خلفية ناعمة جداً -->
         <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-cyan-900/10 blur-[130px] rounded-full -z-10 pointer-events-none"></div>
         
         <h1 class="text-5xl md:text-7xl font-black leading-tight mb-8 max-w-4xl text-white tracking-tighter">
@@ -107,7 +99,6 @@
         </a>
     </header>
 
-    <!-- من أنا (التعريف الشخصي) -->
     <section id="about" class="py-24 px-6 max-w-4xl mx-auto text-center border-t border-white/5">
         <h2 class="text-xs font-bold tracking-[0.3em] text-gray-500 uppercase mb-8">من أنا</h2>
         <p class="text-2xl md:text-3xl text-gray-200 font-light leading-relaxed">
@@ -115,19 +106,16 @@
         </p>
     </section>
 
-    <!-- معرض الأعمال (التوليد التلقائي والتحميل التدريجي) -->
     <section id="portfolio" class="py-32 px-4 max-w-[1600px] mx-auto border-t border-white/5">
         <div class="text-center mb-16">
             <h2 class="text-4xl font-black mb-4 text-white">الأعمال</h2>
             <p class="text-gray-500 font-light">مزيج من الشعارات وتصاميم السوشيال ميديا الإبداعية.</p>
         </div>
 
-        <!-- شبكة التصاميم -->
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 md:gap-4" id="gallery-container">
-            <!-- التصاميم تتولد هنا برمجياً -->
+            <!-- الأعمال تتولد هنا -->
         </div>
 
-        <!-- زر التحميل التدريجي -->
         <div class="text-center mt-16" id="load-more-container">
             <button onclick="loadMoreDesigns()" class="px-8 py-3 border border-white/20 text-white rounded-full hover:bg-white hover:text-black transition duration-300 text-sm font-bold tracking-wide">
                 عرض المزيد
@@ -135,7 +123,6 @@
         </div>
     </section>
 
-    <!-- آراء العملاء (بسيطة، خالية من المسميات، أسماء متنوعة) -->
     <section id="reviews" class="py-32 px-6 relative bg-surface border-t border-white/5">
         <div class="max-w-4xl mx-auto text-center">
             <h2 class="text-xs font-bold tracking-[0.3em] text-gray-500 uppercase mb-16">آراء العملاء</h2>
@@ -146,7 +133,6 @@
         </div>
     </section>
 
-    <!-- تواصل معي (Minimalist Contact) -->
     <section id="contact" class="py-32 px-6 max-w-3xl mx-auto text-center border-t border-white/5">
         <h2 class="text-3xl font-black mb-12 text-white">لنتحدث عن مشروعك القادم</h2>
         <div class="flex flex-wrap justify-center gap-6">
@@ -168,42 +154,40 @@
         </div>
     </section>
 
-    <!-- Scripts -->
     <script>
-        // --- 1. خوارزمية التوليد التلقائي للأعمال (100 تصميم / تحميل تدريجي) ---
-        
         const galleryContainer = document.getElementById('gallery-container');
         const loadMoreBtn = document.getElementById('load-more-container');
         
         const totalDesignsLimit = 100;
         let currentLoaded = 0;
-        const loadBatchSize = 16; // تحميل 16 تصميم في كل ضغطة للحفاظ على سرعة الموقع
+        const loadBatchSize = 16; 
 
-        // مصفوفات لضمان عدم التكرار (توليد ذكي ومختلف)
-        const styles = ["minimalist", "3D render", "cyberpunk neon", "dark sleek", "glassmorphism", "high-end luxury", "abstract geometric"];
-        const subjects = ["logo design", "social media post", "typography poster", "brand emblem", "lettermark logo", "futuristic banner"];
-        const colors = ["cyan and black", "purple and dark", "gold and black", "monochrome", "neon pink and blue", "silver metallic"];
+        // قائمة صور فخمة عالية الدقة (بديل قوي لا يتوقف)
+        const premiumImages = [
+            "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=600&auto=format&fit=crop",
+            "https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=600&auto=format&fit=crop",
+            "https://images.unsplash.com/photo-1614850523459-c2f4c699c52e?q=80&w=600&auto=format&fit=crop",
+            "https://images.unsplash.com/photo-1634152962476-4b8a00e1915c?q=80&w=600&auto=format&fit=crop",
+            "https://images.unsplash.com/photo-1550684376-efc484ca5e83?q=80&w=600&auto=format&fit=crop",
+            "https://images.unsplash.com/photo-1604871000636-074fa5117945?q=80&w=600&auto=format&fit=crop",
+            "https://images.unsplash.com/photo-1557672172-298e090bd0f1?q=80&w=600&auto=format&fit=crop",
+            "https://images.unsplash.com/photo-1518640467707-6811f4a6ab73?q=80&w=600&auto=format&fit=crop",
+            "https://images.unsplash.com/photo-1633613286991-611fe299c4eb?q=80&w=600&auto=format&fit=crop",
+            "https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?q=80&w=600&auto=format&fit=crop"
+        ];
 
         function generateDesigns(count) {
             let html = '';
             const end = Math.min(currentLoaded + count, totalDesignsLimit);
             
             for (let i = currentLoaded + 1; i <= end; i++) {
-                // دمج عشوائي للعناصر لضمان اختلاف الأوامر
-                const style = styles[Math.floor(Math.random() * styles.length)];
-                const subject = subjects[Math.floor(Math.random() * subjects.length)];
-                const color = colors[Math.floor(Math.random() * colors.length)];
-                
-                // صياغة الأمر الموجه للذكاء الاصطناعي مع إضافة رقم (i) كـ Seed لمنع التكرار نهائياً
-                const prompt = `${style} ${subject} ${color} background highly detailed masterpiece`;
-                const encodedPrompt = encodeURIComponent(prompt);
-                
-                // استخدام خدمة توليد الصور (بدون لوجو، مقاس مربع)
-                const imgUrl = `https://image.pollinations.ai/prompt/${encodedPrompt}?seed=${i * 123}&width=600&height=600&nologo=true`;
+                // اختيار صورة وتطبيق فلتر CSS بسيط لتغيير الألوان برمجياً وجعل كل صورة تبدو مختلفة
+                const imgUrl = premiumImages[i % premiumImages.length];
+                const hueShift = (i * 45) % 360; 
                 
                 html += `
                     <div class="design-card">
-                        <img src="${imgUrl}" loading="lazy" alt="تصميم إبداعي ${i}">
+                        <img src="${imgUrl}" loading="lazy" alt="تصميم إبداعي ${i}" style="filter: hue-rotate(${hueShift}deg) brightness(0.8);">
                     </div>
                 `;
             }
@@ -211,23 +195,17 @@
             galleryContainer.insertAdjacentHTML('beforeend', html);
             currentLoaded = end;
 
-            // إخفاء زر "عرض المزيد" إذا وصلنا لـ 100
             if (currentLoaded >= totalDesignsLimit) {
                 loadMoreBtn.style.display = 'none';
             }
         }
 
-        // دالة زر عرض المزيد
         function loadMoreDesigns() {
             generateDesigns(loadBatchSize);
         }
 
-        // تشغيل التحميل الأول عند فتح الموقع (16 تصميم)
         generateDesigns(loadBatchSize);
 
-
-        // --- 2. نظام التقييمات (أسماء مختلطة، كلام عربي، بدون مسميات) ---
-        
         const reviews = [
             { name: "أحمد الدليمي", text: "تصميم الشعار كان يعكس فخامة المشروع بالضبط. دقة واحترافية لا توصف." },
             { name: "Michael Vance", text: "تجربة عمل استثنائية! بوستات السوشيال ميديا رفعت من مستوى حسابنا بشكل كبير." },
@@ -241,7 +219,6 @@
         let currentIndex = 0;
 
         function updateReview() {
-            // إخفاء
             reviewContainer.classList.remove('opacity-100', 'translate-y-0');
             reviewContainer.classList.add('opacity-0', 'translate-y-4');
             
@@ -254,17 +231,15 @@
                         <p class="text-xs text-gray-500 mt-1">عميل</p>
                     </div>
                 `;
-                // إظهار
                 reviewContainer.classList.remove('opacity-0', 'translate-y-4');
                 reviewContainer.classList.add('opacity-100', 'translate-y-0');
                 
                 currentIndex = (currentIndex + 1) % reviews.length;
-            }, 600); // مدة اختفاء النص قبل التبديل
+            }, 600); 
         }
 
-        // تشغيل التقييمات
         updateReview();
-        setInterval(updateReview, 6000); // تغيير التقييم كل 6 ثواني
+        setInterval(updateReview, 6000); 
 
     </script>
 </body>
