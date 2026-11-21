@@ -9,7 +9,7 @@
 <style>
 :root{--bg:#d8d1c2;--pp:#e6e0d3;--ink:#16130f;--mut:#5d564a;--red:#c8161d;--ln:#16130f;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#15130f;--pp:#201d17;--ink:#ece6d8;--mut:#a39b8a;--ln:#ece6d8;color-scheme:dark}}
-:root[data-theme="dark"]{--bg:#15130f;--pp:#201d17;--ink:#ece6d8;--mut:#a39b8a;--ln:#ece6d8}
+:root[data-theme="dark"]{--bg:#15130f;--pp:#201d17;--ink:#ece6d8;--mut:#a39b8a;--ln:#ece6d8;color-scheme:dark}
 *{box-sizing:border-box;margin:0}
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--ink);font-family:'IBM Plex Sans Arabic',Tahoma,sans-serif;line-height:1.8;overflow-x:hidden}
@@ -21,9 +21,11 @@ header{position:sticky;top:0;z-index:20;background:var(--bg);border-bottom:2px s
 header .w{display:flex;align-items:center;justify-content:space-between;height:60px}
 .brand{display:flex;align-items:center;gap:10px;font-weight:600;direction:ltr}
 .brand img{width:34px;height:34px;border-radius:50%}
-nav{display:flex;gap:6px}
+nav{display:flex;align-items:center;gap:6px}
 nav a{padding:6px 14px;border-radius:999px;font-size:.92rem}
 nav a:hover{background:var(--ink);color:var(--bg)}
+.thm{background:none;border:2px solid var(--ln);color:inherit;width:36px;height:36px;border-radius:50%;cursor:pointer;display:grid;place-items:center;font-size:1rem;transition:background .15s,color .15s;flex:none}
+.thm:hover{background:var(--ink);color:var(--bg)}
 .hero{position:relative;min-height:calc(100vh - 60px);min-height:calc(100svh - 60px);overflow:hidden;border-bottom:2px solid var(--ln)}
 .bar{position:absolute;top:0;bottom:0;right:14%;width:min(18vw,150px);background:var(--red)}
 .hero .w{position:relative;height:100%;min-height:inherit;display:flex;flex-direction:column;justify-content:center;padding-block:40px}
@@ -53,14 +55,17 @@ h2{font-size:clamp(2rem,5vw,3.2rem);line-height:1.2}
 .it[hidden]{display:none}
 .ord{background:var(--red);color:#fff;border-block:2px solid var(--ln)}
 .ord .sub{color:#ffe3df}
-form{display:grid;gap:14px;max-width:560px}
+form{display:grid;gap:16px;max-width:600px}
 form label{font-weight:600;font-size:.95rem}
 .pick{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px}
 .pick input{position:absolute;opacity:0}
-.pick span{display:inline-block;padding:6px 16px;border:2px solid #fff;border-radius:999px;cursor:pointer;font-weight:400}
-.pick input:checked+span{background:#fff;color:var(--red)}
+.pick span{display:inline-block;padding:6px 16px;border:2px solid #fff;border-radius:999px;cursor:pointer;font-weight:400;font-size:.9rem}
+.pick input:checked+span{background:#fff;color:var(--red);font-weight:600}
 .pick input:focus-visible+span{outline:3px solid #fff;outline-offset:3px}
-textarea{width:100%;font:inherit;padding:12px;border:2px solid #fff;background:rgba(255,255,255,.12);color:#fff;min-height:110px;resize:vertical}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+select{width:100%;font:inherit;padding:10px 12px;border:2px solid #fff;background:rgba(255,255,255,.15);color:#fff;margin-top:6px;cursor:pointer}
+select option{background:#c8161d;color:#fff}
+textarea{width:100%;font:inherit;padding:12px;border:2px solid #fff;background:rgba(255,255,255,.12);color:#fff;min-height:110px;resize:vertical;margin-top:6px}
 textarea::placeholder{color:#ffd9d4}
 .ord .btn{background:#fff;color:var(--red);justify-self:start;border-color:#16130f}
 .rr{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;padding:6px 4px 22px;scrollbar-width:thin}
@@ -75,19 +80,30 @@ textarea::placeholder{color:#ffd9d4}
 footer{background:var(--ink);color:var(--bg);padding:26px 0;text-align:center}
 footer b{direction:ltr;unicode-bidi:embed}
 dialog{border:0;background:transparent;padding:0;max-width:96vw;max-height:96vh;overflow:visible}
-dialog::backdrop{background:rgba(10,8,5,.9)}
-dialog img{max-width:90vw;max-height:86vh;display:block;margin:auto;border:6px solid #f4efe4}
-dialog .c{color:#f4efe4;text-align:center;margin-top:10px}
-dialog button{position:fixed;top:50%;width:46px;height:46px;border-radius:50%;border:0;background:#f4efe4;color:#16130f;font-size:1.4rem;cursor:pointer}
+dialog::backdrop{background:rgba(10,8,5,.92)}
+dialog img{max-width:90vw;max-height:74vh;display:block;margin:auto;border:6px solid #f4efe4}
+dialog .info{color:#f4efe4;text-align:center;margin-top:12px;max-width:520px;margin-inline:auto;padding:0 12px}
+dialog .c{font-family:'Reem Kufi',serif;font-size:1.35rem;font-weight:700}
+dialog .d{font-size:.92rem;color:#d8d1c2;margin-top:4px}
+dialog .meta{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:10px;flex-wrap:wrap}
+dialog .badge{background:var(--red);color:#fff;padding:2px 12px;border-radius:999px;font-size:.8rem}
+dialog .shr{background:#f4efe4;color:#16130f;border:0;padding:4px 14px;border-radius:999px;font:inherit;font-size:.82rem;font-weight:600;cursor:pointer}
+dialog .nav-btn{position:fixed;top:50%;width:46px;height:46px;border-radius:50%;border:0;background:#f4efe4;color:#16130f;font-size:1.4rem;cursor:pointer}
 #pv{right:12px}#nx{left:12px}#x{top:16px;left:50%;translate:-50% 0}
-@media(max-width:700px){.bar{right:8%}nav a{padding:6px 9px;font-size:.85rem}.brand span{display:none}}
+@media(max-width:700px){.bar{right:8%}nav a{padding:6px 8px;font-size:.82rem}.brand span{display:none}.row2{grid-template-columns:1fr}}
 @media(prefers-reduced-motion:reduce){.mq div{animation:none}*{transition:none!important}}
 </style>
 </head>
 <body>
 <header><div class="w">
 <a class="brand" href="#top"><img src="logo.jpg" alt="شعار m8desiner"><span>m8desiner</span></a>
-<nav><a href="#works">الأعمال</a><a href="#order">اطلب</a><a href="#reviews">آراء</a><a href="#contact">تواصل</a></nav>
+<nav>
+<a href="#works">الأعمال</a>
+<a href="#order">اطلب</a>
+<a href="#reviews">آراء</a>
+<a href="#contact">تواصل</a>
+<button class="thm" id="thm" type="button" aria-label="تبديل المظهر" title="تبديل الوضع الليلي والنهاري">◐</button>
+</nav>
 </div></header>
 
 <main id="top">
@@ -106,15 +122,36 @@ dialog button{position:fixed;top:50%;width:46px;height:46px;border-radius:50%;bo
 <div class="mq" aria-hidden="true"><div id="mq"></div></div>
 
 <section id="works"><div class="w">
-<h2>الأعمال</h2><p class="sub">اضغط على أي تصميم لعرضه، وحرّك المؤشر فوقه.</p>
+<h2>الأعمال</h2><p class="sub">اضغط على أي تصميم لعرض التفاصيل، وحرّك المؤشر فوقه.</p>
 <div class="chips" id="chips"></div>
 <div class="gal" id="gal"></div>
 </div></section>
 
 <section id="order" class="ord"><div class="w">
-<h2>اطلب تصميمك</h2><p class="sub">اختر النوع واكتب فكرتك، وتوصلني الرسالة جاهزة على واتساب.</p>
+<h2>اطلب تصميمك</h2><p class="sub">اختر النوع والميزانية والمدة واكتب فكرتك، وتوصلني الرسالة جاهزة على واتساب.</p>
 <form id="f">
 <div><label>نوع التصميم</label><div class="pick" id="pk"></div></div>
+<div class="row2">
+<div>
+<label for="bdg">الميزانية التقريبية</label>
+<select id="bdg">
+<option value="20,000 - 35,000 د.ع">20,000 - 35,000 د.ع</option>
+<option value="35,000 - 60,000 د.ع">35,000 - 60,000 د.ع</option>
+<option value="60,000 - 100,000 د.ع">60,000 - 100,000 د.ع</option>
+<option value="أكثر من 100,000 د.ع">أكثر من 100,000 د.ع</option>
+<option value="نحددها حسب التفاصيل" selected>نحددها حسب التفاصيل</option>
+</select>
+</div>
+<div>
+<label for="dur">المدة المطلوبة</label>
+<select id="dur">
+<option value="مستعجل (خلال 24 ساعة)">مستعجل (خلال 24 ساعة)</option>
+<option value="2 - 3 أيام" selected>2 - 3 أيام</option>
+<option value="أسبوع كامل">أسبوع كامل</option>
+<option value="غير مستعجل / مرن">غير مستعجل / مرن</option>
+</select>
+</div>
+</div>
 <div><label for="t">فكرتك</label><textarea id="t" placeholder="اكتب النص المطلوب والألوان وأي تفاصيل"></textarea></div>
 <button class="btn" type="submit">أرسل عبر واتساب</button>
 </form>
@@ -133,11 +170,35 @@ dialog button{position:fixed;top:50%;width:46px;height:46px;border-radius:50%;bo
 
 <footer><div class="w">© <span id="y"></span> جميع الحقوق محفوظة <b>@m8desiner</b></div></footer>
 
-<dialog id="dlg"><img id="big" alt=""><div class="c" id="cap"></div><button id="pv" aria-label="السابق">›</button><button id="nx" aria-label="التالي">‹</button><button id="x" aria-label="إغلاق">×</button></dialog>
+<dialog id="dlg">
+<img id="big" alt="">
+<div class="info">
+<div class="c" id="cap"></div>
+<div class="d" id="desc"></div>
+<div class="meta">
+<span class="badge" id="catBadge"></span>
+<button type="button" class="shr" id="shr">نسخ رابط العمل</button>
+</div>
+</div>
+<button class="nav-btn" id="pv" aria-label="السابق">›</button>
+<button class="nav-btn" id="nx" aria-label="التالي">‹</button>
+<button class="nav-btn" id="x" aria-label="إغلاق">×</button>
+</dialog>
 
 <script>
-var works=[["i7.jpg","الحقيقة: البحث لا ينتهي","a"],["i1.jpg","الباب","b"],["i2.jpg","الزمن","a"],["i4.jpg","تلاحم","b"],["i3.jpg","Consciousness","b"],["i5.jpg","احزم حقيبتك وغادر","a"],["i6.jpg","الحقيقة","a"],["i0.jpg","هوية m8desiner","b"]];
+// مصفوفة الأعمال: [الصورة، العنوان، التصنيف، الوصف والتفاصيل]
+var works=[
+["i7.jpg","الحقيقة: البحث لا ينتهي","a","بوستر تايبوغرافي يدمج الخط العربي الحر مع تكوين بصري يعبر عن رحلة البحث المستمر."],
+["i1.jpg","الباب","b","عمل كولاج مفاهيمي يمزج بين العناصر الكلاسيكية والرمزية بأسلوب معاصر."],
+["i2.jpg","الزمن","a","تكوين خطي يبرز مرونة الحرف العربي وتداخله مع الإيقاع البصري."],
+["i4.jpg","تلاحم","b","دمج بصري وتلاعب بالضوء والظل يعكس الترابط الإنساني والفني."],
+["i3.jpg","Consciousness","b","بوستر مفاهيمي يجمع بين الدمج الرقمي والخطوط الهندسية."],
+["i5.jpg","احزم حقيبتك وغادر","a","تصميم بوستر يعتمد على التباين اللوني وقوة الكتلة النصية بالخط العربي."],
+["i6.jpg","الحقيقة","a","معالجة تايبوغرافية تجريبية تركز على التوازن بين الفراغ والحرف."],
+["i0.jpg","هوية m8desiner","b","تطبيقات الهوية البصرية والشعار الخاص بالعلامة التجارية @m8desiner."]
+];
 var cats=[["all","الكل"],["a","خط عربي"],["b","كولاج وفن مفاهيمي"]];
+var catNames={"a":"خط عربي","b":"كولاج وفن مفاهيمي"};
 // عدّل التقييمات هنا: ضع آراء عملائك الحقيقية بدل هذه النماذج
 var reviews=[["شغل راقي وفكرة مختلفة، التصميم طلع أحسن مما توقعت.","عميل"],["التزم بالوقت وتعديلاته سريعة، أنصح بالتعامل معه.","عميلة"],["الخط العربي في التصميم كان مرتب وبهوية واضحة.","عميل"],["تعامل محترم وتفاصيل دقيقة بالتصميم.","عميل"],["سويت عنده بوستر لمشروعي وكانت النتيجة ممتازة.","صاحب مشروع"],["إبداع وذوق عالي، رجعت له أكثر من مرة.","عميلة"]];
 var types=["بوستر","سوشيال ميديا","شعار وهوية","خط عربي","كولاج فني"];
@@ -153,9 +214,35 @@ var socials=[["واتساب","+964 782 854 4008","https://wa.me/9647828544008",P
 ["لينكدإن","@m8desiner","https://linkedin.com/in/m8desiner","M19 3A2 2 0 0 1 21 5v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14zm-.5 15.5v-5.3a3.3 3.3 0 0 0-3.3-3.3c-.9 0-1.9.5-2.3 1.3v-1.1h-2.8v8.4h2.8v-4.9c0-.8.6-1.5 1.4-1.5s1.4.7 1.4 1.5v4.9h2.8zM6.9 8.3a1.6 1.6 0 1 0 0-3.2 1.6 1.6 0 0 0 0 3.2zM8.3 18.5v-8.4H5.5v8.4h2.8z"],
 ["قناة تيليجرام","t.me/m8desiner1","https://t.me/m8desiner1",T],["تيليجرام للتواصل","t.me/m8desiner","https://t.me/m8desiner",T]];
 var $=function(i){return document.getElementById(i)};
+
+// زر تبديل الوضع الليلي والنهاري
+var savedTheme=localStorage.getItem('m8_theme');
+if(savedTheme){document.documentElement.setAttribute('data-theme',savedTheme)}
+function updateThemeBtn(){
+var isDark=document.documentElement.getAttribute('data-theme')==='dark'||(!document.documentElement.getAttribute('data-theme')&&window.matchMedia('(prefers-color-scheme:dark)').matches);
+$('thm').textContent=isDark?'☀':'☾';
+}
+updateThemeBtn();
+$('thm').onclick=function(){
+var isDark=document.documentElement.getAttribute('data-theme')==='dark'||(!document.documentElement.getAttribute('data-theme')&&window.matchMedia('(prefers-color-scheme:dark)').matches);
+var next=isDark?'light':'dark';
+document.documentElement.setAttribute('data-theme',next);
+localStorage.setItem('m8_theme',next);
+updateThemeBtn();
+};
+
 $('mq').textContent=('m8desiner ✦ خط عربي ✦ كولاج ✦ بوسترات ✦ ').repeat(12);
 var cur=0,vis=works.slice();
-function show(i){cur=(i+vis.length)%vis.length;$('big').src=vis[cur][0];$('big').alt=vis[cur][1];$('cap').textContent=vis[cur][1]}
+function show(i){
+cur=(i+vis.length)%vis.length;
+var item=vis[cur];
+$('big').src=item[0];
+$('big').alt=item[1];
+$('cap').textContent=item[1];
+$('desc').textContent=item[3]||'';
+$('catBadge').textContent=catNames[item[2]]||'';
+$('shr').textContent='نسخ رابط العمل';
+}
 works.forEach(function(w,n){var b=document.createElement('button');b.className='it';b.dataset.c=w[2];b.innerHTML='<img src="'+w[0]+'" alt="'+w[1]+'" loading="lazy">';
 b.onclick=function(){vis=works.filter(function(x){return $('chips').querySelector('[aria-pressed=true]').dataset.c=='all'||x[2]==$('chips').querySelector('[aria-pressed=true]').dataset.c});show(vis.indexOf(w));$('dlg').showModal()};
 b.onmousemove=function(e){var r=b.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;b.style.transform='perspective(700px) rotateY('+(x*-10)+'deg) rotateX('+(y*10)+'deg) scale(1.03)'};
@@ -164,10 +251,19 @@ cats.forEach(function(c,i){var b=document.createElement('button');b.textContent=
 b.onclick=function(){[].forEach.call($('chips').children,function(x){x.setAttribute('aria-pressed',x==b)});[].forEach.call($('gal').children,function(g){g.hidden=!(c[0]=='all'||g.dataset.c==c[0])})};$('chips').appendChild(b)});
 $('pv').onclick=function(){show(cur-1)};$('nx').onclick=function(){show(cur+1)};$('x').onclick=function(){$('dlg').close()};
 $('dlg').onclick=function(e){if(e.target==$('dlg'))$('dlg').close()};
+$('shr').onclick=function(){
+var url=location.origin+location.pathname+'#works';
+if(navigator.clipboard){navigator.clipboard.writeText(url);$('shr').textContent='تم نسخ الرابط ✓'}
+};
 document.addEventListener('keydown',function(e){if(!$('dlg').open)return;if(e.key=='ArrowRight')show(cur-1);if(e.key=='ArrowLeft')show(cur+1)});
 types.forEach(function(t,i){var l=document.createElement('label');l.innerHTML='<input type="radio" name="ty" value="'+t+'"'+(i?'':' checked')+'><span>'+t+'</span>';$('pk').appendChild(l)});
-$('f').onsubmit=function(e){e.preventDefault();var ty=document.querySelector('input[name=ty]:checked').value;
-var m='مرحباً m8desiner، أريد تصميم: '+ty+'\n'+($('t').value||'');window.open('https://wa.me/9647828544008?text='+encodeURIComponent(m),'_blank')};
+$('f').onsubmit=function(e){e.preventDefault();
+var ty=document.querySelector('input[name=ty]:checked').value;
+var bdg=$('bdg').value;
+var dur=$('dur').value;
+var details=$('t').value.trim();
+var m='مرحباً m8desiner، أريد طلب تصميم:\n• النوع: '+ty+'\n• الميزانية التقريبية: '+bdg+'\n• المدة المطلوبة: '+dur+(details?'\n• التفاصيل: '+details:'');
+window.open('https://wa.me/9647828544008?text='+encodeURIComponent(m),'_blank')};
 $('rr').innerHTML=reviews.map(function(r){return '<div class="rc"><div class="st" aria-label="5 من 5">★★★★★</div><p>'+r[0]+'</p><b>'+r[1]+'</b></div>'}).join('');
 $('soc').innerHTML=socials.map(function(s){return '<a href="'+s[2]+'" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="'+s[3]+'"/></svg><div>'+s[0]+'<small>'+s[1]+'</small></div></a>'}).join('');
 $('y').textContent=new Date().getFullYear();
