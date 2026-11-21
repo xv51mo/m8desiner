@@ -1,159 +1,275 @@
-import telebot
-import requests
-import base64
-import json
-import time
-import os
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>m8desiner | معرض تصاميم</title>
+<link rel="icon" href="logo.jpg">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Reem+Kufi:wght@500;700&family=IBM+Plex+Sans+Arabic:wght@400;600&display=swap">
+<style>
+:root{--bg:#d8d1c2;--pp:#e6e0d3;--ink:#16130f;--mut:#5d564a;--red:#c8161d;--ln:#16130f;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#15130f;--pp:#201d17;--ink:#ece6d8;--mut:#a39b8a;--ln:#ece6d8;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#15130f;--pp:#201d17;--ink:#ece6d8;--mut:#a39b8a;--ln:#ece6d8;color-scheme:dark}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:'IBM Plex Sans Arabic',Tahoma,sans-serif;line-height:1.8;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:3px solid var(--red);outline-offset:3px}
+h1,h2,.k{font-family:'Reem Kufi','IBM Plex Sans Arabic',serif}
+.w{max-width:1160px;margin:auto;padding:0 20px}
+header{position:sticky;top:0;z-index:20;background:var(--bg);border-bottom:2px solid var(--ln)}
+header .w{display:flex;align-items:center;justify-content:space-between;height:60px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:600;direction:ltr}
+.brand img{width:34px;height:34px;border-radius:50%}
+nav{display:flex;align-items:center;gap:6px}
+nav a{padding:6px 14px;border-radius:999px;font-size:.92rem}
+nav a:hover{background:var(--ink);color:var(--bg)}
+.thm{background:none;border:2px solid var(--ln);color:inherit;width:36px;height:36px;border-radius:50%;cursor:pointer;display:grid;place-items:center;font-size:1rem;transition:background .15s,color .15s;flex:none}
+.thm:hover{background:var(--ink);color:var(--bg)}
+.hero{position:relative;min-height:calc(100vh - 60px);min-height:calc(100svh - 60px);overflow:hidden;border-bottom:2px solid var(--ln)}
+.bar{position:absolute;top:0;bottom:0;right:14%;width:min(18vw,150px);background:var(--red)}
+.hero .w{position:relative;height:100%;min-height:inherit;display:flex;flex-direction:column;justify-content:center;padding-block:40px}
+.tag{display:inline-block;background:var(--ink);color:var(--bg);padding:2px 16px;transform:rotate(-2deg);align-self:flex-start;font-size:.95rem}
+h1{font-size:clamp(3rem,11vw,8.5rem);line-height:1.05;font-weight:700;margin:14px 0 8px;position:relative;z-index:2;direction:ltr;text-align:right;letter-spacing:-.02em}
+.lead{max-width:30ch;font-size:1.1rem;position:relative;z-index:2;background:var(--bg);padding:4px 0}
+.btns{display:flex;gap:12px;margin-top:22px;flex-wrap:wrap;position:relative;z-index:2}
+.btn{padding:12px 26px;border:2px solid var(--ln);font-weight:600;background:var(--bg);box-shadow:4px 4px 0 var(--ln);transition:transform .15s,box-shadow .15s;cursor:pointer;font:inherit;color:inherit}
+.btn.r{background:var(--red);color:#fff}
+.btn:hover{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--ln)}
+.dr{position:absolute;width:clamp(120px,21vw,230px);border:6px solid #f4efe4;box-shadow:0 12px 30px rgba(0,0,0,.35);cursor:grab;touch-action:none;user-select:none;z-index:1}
+.dr:active{cursor:grabbing}
+.hint{position:absolute;bottom:14px;left:20px;font-size:.82rem;color:var(--mut);z-index:3}
+.mq{background:var(--ink);color:var(--bg);overflow:hidden;white-space:nowrap;padding:10px 0;direction:ltr}
+.mq div{display:inline-block;animation:mq 28s linear infinite;font-family:'Reem Kufi',serif;font-size:1.3rem}
+@keyframes mq{to{transform:translateX(-50%)}}
+section{padding:72px 0}
+h2{font-size:clamp(2rem,5vw,3.2rem);line-height:1.2}
+.sub{color:var(--mut);margin:6px 0 24px}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:26px}
+.chips button{font:inherit;color:inherit;background:none;border:2px solid var(--ln);padding:6px 18px;border-radius:999px;cursor:pointer}
+.chips button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.gal{columns:3 250px;column-gap:20px}
+.it{display:block;width:100%;margin:0 0 20px;padding:0;border:6px solid #f4efe4;background:#f4efe4;box-shadow:0 8px 22px rgba(0,0,0,.25);cursor:zoom-in;break-inside:avoid;transition:transform .2s ease-out;transform-style:preserve-3d;will-change:transform}
+.it img{width:100%;display:block}
+.it:nth-child(odd){rotate:-.8deg}.it:nth-child(even){rotate:.8deg}
+.it[hidden]{display:none}
+.ord{background:var(--red);color:#fff;border-block:2px solid var(--ln)}
+.ord .sub{color:#ffe3df}
+form{display:grid;gap:16px;max-width:600px}
+form label{font-weight:600;font-size:.95rem}
+.pick{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px}
+.pick input{position:absolute;opacity:0}
+.pick span{display:inline-block;padding:6px 16px;border:2px solid #fff;border-radius:999px;cursor:pointer;font-weight:400;font-size:.9rem}
+.pick input:checked+span{background:#fff;color:var(--red);font-weight:600}
+.pick input:focus-visible+span{outline:3px solid #fff;outline-offset:3px}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+select{width:100%;font:inherit;padding:10px 12px;border:2px solid #fff;background:rgba(255,255,255,.15);color:#fff;margin-top:6px;cursor:pointer}
+select option{background:#c8161d;color:#fff}
+textarea{width:100%;font:inherit;padding:12px;border:2px solid #fff;background:rgba(255,255,255,.12);color:#fff;min-height:110px;resize:vertical;margin-top:6px}
+textarea::placeholder{color:#ffd9d4}
+.ord .btn{background:#fff;color:var(--red);justify-self:start;border-color:#16130f}
+.rr{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;padding:6px 4px 22px;scrollbar-width:thin}
+.rc{flex:0 0 min(320px,82vw);scroll-snap-align:start;background:var(--pp);border:2px solid var(--ln);padding:24px;box-shadow:6px 6px 0 var(--ln)}
+.rc .st{color:var(--red);letter-spacing:3px}
+.rc b{display:block;margin-top:12px;font-weight:400;color:var(--mut);font-size:.9rem}
+.soc{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+.soc a{width:58px;height:58px;border-radius:50%;display:grid;place-items:center;background:var(--pp);border:2px solid var(--ln);box-shadow:4px 4px 0 var(--ln);transition:transform .15s,box-shadow .15s,background .15s}
+.soc a:hover{background:var(--ink);color:var(--bg);transform:translateY(-3px);box-shadow:4px 7px 0 var(--red)}
+.soc svg{width:26px;height:26px;fill:currentColor}
+footer{background:var(--ink);color:var(--bg);padding:26px 0;text-align:center}
+footer b{direction:ltr;unicode-bidi:embed}
+dialog{border:0;background:transparent;padding:0;max-width:96vw;max-height:96vh;overflow:visible}
+dialog::backdrop{background:rgba(10,8,5,.92)}
+dialog img{max-width:90vw;max-height:74vh;display:block;margin:auto;border:6px solid #f4efe4}
+dialog .info{color:#f4efe4;text-align:center;margin-top:12px;max-width:520px;margin-inline:auto;padding:0 12px}
+dialog .c{font-family:'Reem Kufi',serif;font-size:1.35rem;font-weight:700}
+dialog .d{font-size:.92rem;color:#d8d1c2;margin-top:4px}
+dialog .meta{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:10px;flex-wrap:wrap}
+dialog .badge{background:var(--red);color:#fff;padding:2px 12px;border-radius:999px;font-size:.8rem}
+dialog .shr{background:#f4efe4;color:#16130f;border:0;padding:4px 14px;border-radius:999px;font:inherit;font-size:.82rem;font-weight:600;cursor:pointer}
+dialog .nav-btn{position:fixed;top:50%;width:46px;height:46px;border-radius:50%;border:0;background:#f4efe4;color:#16130f;font-size:1.4rem;cursor:pointer}
+#pv{right:12px}#nx{left:12px}#x{top:16px;left:50%;translate:-50% 0}
+@media(max-width:700px){.bar{right:8%}nav a{padding:6px 8px;font-size:.82rem}.brand span{display:none}.row2{grid-template-columns:1fr}.soc a{width:52px;height:52px}}
+@media(prefers-reduced-motion:reduce){.mq div{animation:none}*{transition:none!important}}
+</style>
+</head>
+<body>
+<header><div class="w">
+<a class="brand" href="#top"><img src="logo.jpg" alt="شعار m8desiner"><span>m8desiner</span></a>
+<nav>
+<a href="#works">الأعمال</a>
+<a href="#order">اطلب</a>
+<a href="#reviews">آراء</a>
+<a href="#contact">تواصل</a>
+<button class="thm" id="thm" type="button" aria-label="تبديل المظهر" title="تبديل الوضع الليلي والنهاري">◐</button>
+</nav>
+</div></header>
 
-# --- الإعدادات الأساسية ---
-# الأفضل تخليها بمتغيرات البيئة أو تكتب قيمتك هنا مباشرة على جهازك فقط
-BOT_TOKEN = os.getenv("BOT_TOKEN", "ضع_توكن_البوت_الجديد_هنا")
-ALLOWED_USER_ID = int(os.getenv("ALLOWED_USER_ID", "0"))  # ضع رقم حسابك (ID) في تيليجرام هنا
-GITHUB_TOKEN = os.getenv("GITHUB_TOKEN", "ضع_توكن_جيت_هاب_هنا")
+<main id="top">
+<div class="hero" id="hero"><div class="bar"></div>
+<div class="w">
+<span class="tag k">مصمم جرافيك</span>
+<h1>m8desiner</h1>
+<p class="lead">خط عربي وكولاج وأفكار تتحول إلى بوسترات.</p>
+<div class="btns"><a class="btn r" href="#order">اطلب تصميمك</a><a class="btn" href="#works">شاهد الأعمال</a></div>
+</div>
+<img class="dr" src="i7.jpg" alt="الحقيقة" style="top:6%;left:5%;rotate:-6deg">
+<img class="dr" src="i4.jpg" alt="تلاحم" style="top:34%;left:22%;rotate:5deg">
+<img class="dr" src="i2.jpg" alt="الزمن" style="bottom:7%;left:6%;rotate:-3deg">
+<span class="hint">اسحب الصور وحركها</span>
+</div>
+<div class="mq" aria-hidden="true"><div id="mq"></div></div>
 
-REPO_OWNER = "xv51mo"
-REPO_NAME = "m8desiner"
-BRANCH = "main"
+<section id="works"><div class="w">
+<h2>الأعمال</h2><p class="sub">اضغط على أي تصميم لعرض التفاصيل، وحرّك المؤشر فوقه.</p>
+<div class="chips" id="chips"></div>
+<div class="gal" id="gal"></div>
+</div></section>
 
-bot = telebot.TeleBot(BOT_TOKEN)
+<section id="order" class="ord"><div class="w">
+<h2>اطلب تصميمك</h2><p class="sub">اختر النوع والميزانية والمدة واكتب فكرتك، وتوصلني الرسالة جاهزة على واتساب.</p>
+<form id="f">
+<div><label>نوع التصميم</label><div class="pick" id="pk"></div></div>
+<div class="row2">
+<div>
+<label for="bdg">الميزانية التقريبية</label>
+<select id="bdg">
+<option value="20,000 - 35,000 د.ع">20,000 - 35,000 د.ع</option>
+<option value="35,000 - 60,000 د.ع">35,000 - 60,000 د.ع</option>
+<option value="60,000 - 100,000 د.ع">60,000 - 100,000 د.ع</option>
+<option value="أكثر من 100,000 د.ع">أكثر من 100,000 د.ع</option>
+<option value="نحددها حسب التفاصيل" selected>نحددها حسب التفاصيل</option>
+</select>
+</div>
+<div>
+<label for="dur">المدة المطلوبة</label>
+<select id="dur">
+<option value="مستعجل (خلال 24 ساعة)">مستعجل (خلال 24 ساعة)</option>
+<option value="2 - 3 أيام" selected>2 - 3 أيام</option>
+<option value="أسبوع كامل">أسبوع كامل</option>
+<option value="غير مستعجل / مرن">غير مستعجل / مرن</option>
+</select>
+</div>
+</div>
+<div><label for="t">فكرتك</label><textarea id="t" placeholder="اكتب النص المطلوب والألوان وأي تفاصيل"></textarea></div>
+<button class="btn" type="submit">أرسل عبر واتساب</button>
+</form>
+</div></section>
 
-HEADERS = {
-    "Authorization": f"token {GITHUB_TOKEN}",
-    "Accept": "application/vnd.github.v3+json"
+<section id="reviews"><div class="w">
+<h2>آراء العملاء</h2><p class="sub">اسحب جانبياً لقراءة المزيد.</p>
+<div class="rr" id="rr" tabindex="0"></div>
+</div></section>
+
+<section id="contact" style="padding-top:0"><div class="w">
+<h2>تواصل معي</h2><p class="sub">اليوزر موحد على كل المنصات: @m8desiner</p>
+<div class="soc" id="soc"></div>
+</div></section>
+</main>
+
+<footer><div class="w">© <span id="y"></span> جميع الحقوق محفوظة <b>@m8desiner</b></div></footer>
+
+<dialog id="dlg">
+<img id="big" alt="">
+<div class="info">
+<div class="c" id="cap"></div>
+<div class="d" id="desc"></div>
+<div class="meta">
+<span class="badge" id="catBadge"></span>
+<button type="button" class="shr" id="shr">نسخ رابط العمل</button>
+</div>
+</div>
+<button class="nav-btn" id="pv" aria-label="السابق">›</button>
+<button class="nav-btn" id="nx" aria-label="التالي">‹</button>
+<button class="nav-btn" id="x" aria-label="إغلاق">×</button>
+</dialog>
+
+<script>
+// مصفوفة الأعمال: [الصورة، العنوان، التصنيف، الوصف والتفاصيل]
+var works=[
+["i7.jpg","الحقيقة: البحث لا ينتهي","a","بوستر تايبوغرافي يدمج الخط العربي الحر مع تكوين بصري يعبر عن رحلة البحث المستمر."],
+["i1.jpg","الباب","b","عمل كولاج مفاهيمي يمزج بين العناصر الكلاسيكية والرمزية بأسلوب معاصر."],
+["i2.jpg","الزمن","a","تكوين خطي يبرز مرونة الحرف العربي وتداخله مع الإيقاع البصري."],
+["i4.jpg","تلاحم","b","دمج بصري وتلاعب بالضوء والظل يعكس الترابط الإنساني والفني."],
+["i3.jpg","Consciousness","b","بوستر مفاهيمي يجمع بين الدمج الرقمي والخطوط الهندسية."],
+["i5.jpg","احزم حقيبتك وغادر","a","تصميم بوستر يعتمد على التباين اللوني وقوة الكتلة النصية بالخط العربي."],
+["i6.jpg","الحقيقة","a","معالجة تايبوغرافية تجريبية تركز على التوازن بين الفراغ والحرف."],
+["i0.jpg","هوية m8desiner","b","تطبيقات الهوية البصرية والشعار الخاص بالعلامة التجارية @m8desiner."]
+];
+var cats=[["all","الكل"],["a","خط عربي"],["b","كولاج وفن مفاهيمي"]];
+var catNames={"a":"خط عربي","b":"كولاج وفن مفاهيمي"};
+// عدّل التقييمات هنا: ضع آراء عملائك الحقيقية بدل هذه النماذج
+var reviews=[["شغل راقي وفكرة مختلفة، التصميم طلع أحسن مما توقعت.","عميل"],["التزم بالوقت وتعديلاته سريعة، أنصح بالتعامل معه.","عميلة"],["الخط العربي في التصميم كان مرتب وبهوية واضحة.","عميل"],["تعامل محترم وتفاصيل دقيقة بالتصميم.","عميل"],["سويت عنده بوستر لمشروعي وكانت النتيجة ممتازة.","صاحب مشروع"],["إبداع وذوق عالي، رجعت له أكثر من مرة.","عميلة"]];
+var types=["بوستر","سوشيال ميديا","شعار وهوية","خط عربي","كولاج فني"];
+var P="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.2 13.6c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.2-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.8s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.6-.4.4c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.3.1.5.1.6-.1l.9-1.1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.2.1.8-.1 1.4z";
+var T="M21.9 4.3 18.7 19.5c-.2 1-.9 1.3-1.7.8l-4.8-3.6-2.3 2.2c-.3.3-.5.5-1 .5l.3-4.9 8.9-8c.4-.3-.1-.5-.6-.2L6.5 13l-4.7-1.5c-1-.3-1-1 .2-1.5L20.4 3c.9-.3 1.6.2 1.5 1.3z";
+var socials=[["واتساب","+964 782 854 4008","https://wa.me/9647828544008",P],
+["تيك توك","@m8desiner","https://tiktok.com/@m8desiner","M16.6 5.8A4.3 4.3 0 0 1 15.5 3h-3.1v12.4a2.6 2.6 0 1 1-2.6-2.6c.3 0 .5 0 .8.1V9.7a5.7 5.7 0 1 0 4.9 5.7V9a7.4 7.4 0 0 0 4.3 1.4V7.300a4.3 4.3 0 0 1-3.2-1.500z"],
+["تويتر X","@m8desiner","https://x.com/m8desiner","M17.8 3h3.1l-6.8 7.7L22 21h-6.2l-4.9-6.3L5.3 21H2.2l7.2-8.3L1.8 3h6.4l4.4 5.8L17.8 3zm-1.1 16.2h1.7L7.2 4.7H5.4l11.3 14.5z"],
+["انستغرام","@m8desiner","https://instagram.com/m8desiner","M7.8 2h8.4A5.8 5.8 0 0 1 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8A5.8 5.8 0 0 1 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2zm0 2A3.8 3.8 0 0 0 4 7.8v8.4A3.8 3.8 0 0 0 7.8 20h8.4a3.8 3.8 0 0 0 3.8-3.8V7.8A3.8 3.8 0 0 0 16.2 4H7.8zM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6zm5.3-3.1a1.2 1.2 0 1 1 0 2.4 1.2 1.2 0 0 1 0-2.4z"],
+["يوتيوب","@m8desiner","https://youtube.com/@m8desiner","M21.6 7.2a2.5 2.5 0 0 0-1.8-1.8C18.2 5 12 5 12 5s-6.2 0-7.8.4A2.5 2.5 0 0 0 2.4 7.2C2 8.8 2 12 2 12s0 3.2.4 4.8a2.5 2.5 0 0 0 1.8 1.8C5.8 19 12 19 12 19s6.2 0 7.8-.4a2.5 2.5 0 0 0 1.8-1.8c.4-1.6.4-4.8.4-4.8s0-3.2-.4-4.8zM10 15V9l5.2 3L10 15z"],
+["بنترست","@m8desiner","https://pinterest.com/m8desiner","M12 2a10 10 0 0 0-3.6 19.3c-.1-.8-.2-2.1 0-3 .2-.8 1.2-5 1.2-5s-.3-.6-.3-1.5c0-1.4.8-2.4 1.8-2.4.8 0 1.2.6 1.2 1.4 0 .9-.6 2.2-.8 3.4-.2 1 .5 1.8 1.5 1.8 1.8 0 3.1-1.9 3.1-4.6 0-2.4-1.7-4.1-4.2-4.1-2.9 0-4.6 2.2-4.6 4.4 0 .9.3 1.8.8 2.3.1.1.1.2.1.3l-.3 1.2c0 .2-.2.2-.4.1-1.5-.7-2.4-2.9-2.4-4.7 0-3.8 2.8-7.3 8-7.3 4.2 0 7.5 3 7.5 7 0 4.2-2.6 7.5-6.3 7.5-1.2 0-2.4-.6-2.8-1.4l-.8 2.9c-.3 1.1-1 2.4-1.5 3.2A10 10 0 1 0 12 2z"],
+["فيسبوك","@m8desiner","https://facebook.com/m8desiner","M22 12a10 10 0 1 0-11.6 9.9v-7h-2.5V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.4h-1.2c-1.2 0-1.6.8-1.6 1.6V12h2.7l-.4 2.9h-2.3v7A10 10 0 0 0 22 12z"],
+["لينكدإن","@m8desiner","https://linkedin.com/in/m8desiner","M19 3A2 2 0 0 1 21 5v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14zm-.5 15.5v-5.3a3.3 3.3 0 0 0-3.3-3.3c-.9 0-1.9.5-2.3 1.3v-1.1h-2.8v8.4h2.8v-4.9c0-.8.6-1.5 1.4-1.5s1.4.7 1.4 1.5v4.9h2.8zM6.9 8.3a1.6 1.6 0 1 0 0-3.2 1.6 1.6 0 0 0 0 3.2zM8.3 18.5v-8.4H5.5v8.4h2.8z"],
+["قناة تيليجرام","t.me/m8desiner1","https://t.me/m8desiner1",T],["تيليجرام للتواصل","t.me/m8desiner","https://t.me/m8desiner",T]];
+var $=function(i){return document.getElementById(i)};
+
+// زر تبديل الوضع الليلي والنهاري
+var savedTheme=localStorage.getItem('m8_theme');
+if(savedTheme){document.documentElement.setAttribute('data-theme',savedTheme)}
+function updateThemeBtn(){
+var isDark=document.documentElement.getAttribute('data-theme')==='dark'||(!document.documentElement.getAttribute('data-theme')&&window.matchMedia('(prefers-color-scheme:dark)').matches);
+$('thm').textContent=isDark?'☀':'☾';
 }
+updateThemeBtn();
+$('thm').onclick=function(){
+var isDark=document.documentElement.getAttribute('data-theme')==='dark'||(!document.documentElement.getAttribute('data-theme')&&window.matchMedia('(prefers-color-scheme:dark)').matches);
+var next=isDark?'light':'dark';
+document.documentElement.setAttribute('data-theme',next);
+localStorage.setItem('m8_theme',next);
+updateThemeBtn();
+};
 
-
-def upload_to_github(file_path, content_bytes, commit_msg, sha=None):
-    url = f"https://api.github.com/repos/{REPO_OWNER}/{REPO_NAME}/contents/{file_path}"
-    encoded_content = base64.b64encode(content_bytes).decode("utf-8")
-    data = {
-        "message": commit_msg,
-        "content": encoded_content,
-        "branch": BRANCH
-    }
-    if sha:
-        data["sha"] = sha
-    res = requests.put(url, headers=HEADERS, json=data)
-    return res.status_code in [200, 201], res.json()
-
-
-def get_github_file(file_path):
-    url = f"https://api.github.com/repos/{REPO_OWNER}/{REPO_NAME}/contents/{file_path}?ref={BRANCH}"
-    res = requests.get(url, headers=HEADERS)
-    if res.status_code == 200:
-        data = res.json()
-        content = base64.b64decode(data["content"]).decode("utf-8")
-        return content, data["sha"]
-    return None, None
-
-
-@bot.message_handler(commands=['start'])
-def welcome(message):
-    if message.from_user.id != ALLOWED_USER_ID:
-        return
-    bot.reply_to(
-        message,
-        "أهلاً بك يا مصمم (@m8desiner)! 🎨\n\n"
-        "لرفع تصميم جديد إلى مستودع `xv51mo/m8desiner`، أرسل الصورة مع الكابتشن بهذه الصيغة:\n"
-        "`العنوان | التصنيف | الوصف`\n\n"
-        "• التصنيف: اكتب `a` للخط العربي، أو `b` للكولاج وفن مفاهيمي.\n"
-        "• مثال:\n"
-        "`نبض الحرف | a | تكوين خطي حديث بتباين لوني قوي`",
-        parse_mode="Markdown"
-    )
-
-
-@bot.message_handler(content_types=['photo'])
-def handle_photo(message):
-    if message.from_user.id != ALLOWED_USER_ID:
-        bot.reply_to(message, "عذراً، هذا البوت خاص بصاحب الموقع فقط.")
-        return
-
-    caption = message.caption or ""
-    parts = [p.strip() for p in caption.split("|")]
-
-    if len(parts) < 2 or not parts[0]:
-        bot.reply_to(
-            message,
-            "⚠️ صيغة الوصف غير مكتملة!\n"
-            "اكتب الكابتشن بهذا الشكل:\n"
-            "`العنوان | a أو b | الوصف`",
-            parse_mode="Markdown"
-        )
-        return
-
-    title = parts[0]
-    category = parts[1].lower() if parts[1].lower() in ['a', 'b'] else 'a'
-    description = parts[2] if len(parts) > 2 else ""
-
-    status_msg = bot.reply_to(message, "⏳ جاري رفع الصورة وتحديث `works.json`...", parse_mode="Markdown")
-
-    try:
-        # 1. تحميل أعلى دقة للصورة من تيليجرام
-        file_info = bot.get_file(message.photo[-1].file_id)
-        downloaded_file = bot.download_file(file_info.file_path)
-
-        # اسم فريد للصورة داخل مجلد المشروع
-        img_filename = f"work_{int(time.time())}.jpg"
-
-        # 2. رفع الصورة إلى GitHub
-        ok_img, err_img = upload_to_github(
-            img_filename,
-            downloaded_file,
-            f"Add artwork: {title}"
-        )
-        if not ok_img:
-            bot.edit_message_text(
-                f"❌ فشل رفع الصورة إلى GitHub:\n{err_img.get('message', '')}",
-                message.chat.id,
-                status_msg.message_id
-            )
-            return
-
-        # 3. قراءة وتحديث ملف works.json
-        json_text, sha = get_github_file("works.json")
-        works_list = json.loads(json_text) if json_text else []
-
-        new_work = [img_filename, title, category, description]
-        works_list.insert(0, new_work)
-
-        updated_json = json.dumps(works_list, ensure_ascii=False, indent=2).encode("utf-8")
-        ok_json, err_json = upload_to_github(
-            "works.json",
-            updated_json,
-            f"Update works.json with: {title}",
-            sha=sha
-        )
-
-        if ok_json:
-            cat_label = "خط عربي" if category == "a" else "كولاج وفن مفاهيمي"
-            bot.edit_message_text(
-                f"✅ تم رفع التصميم وتحديث الموقع بنجاح!\n\n"
-                f"🖼️ الملف: `{img_filename}`\n"
-                f"📌 العنوان: {title}\n"
-                f"📂 القسم: {cat_label}\n"
-                f"📝 الوصف: {description or '—'}\n\n"
-                f"⏳ سيظهر خلال لحظات على الموقع.",
-                message.chat.id,
-                status_msg.message_id,
-                parse_mode="Markdown"
-            )
-        else:
-            bot.edit_message_text(
-                f"⚠️ رُفعت الصورة (`{img_filename}`) لكن فشل تحديث `works.json`:\n{err_json.get('message', '')}",
-                message.chat.id,
-                status_msg.message_id,
-                parse_mode="Markdown"
-            )
-
-    except Exception as e:
-        bot.edit_message_text(
-            f"❌ حدث خطأ غير متوقع:\n{str(e)}",
-            message.chat.id,
-            status_msg.message_id
-        )
-
-
-if __name__ == "__main__":
-    print("بوت m8desiner يعمل الآن...")
-    bot.infinity_polling(skip_pending=True)
+$('mq').textContent=('m8desiner ✦ خط عربي ✦ كولاج ✦ بوسترات ✦ ').repeat(12);
+var cur=0,vis=works.slice();
+function show(i){
+cur=(i+vis.length)%vis.length;
+var item=vis[cur];
+$('big').src=item[0];
+$('big').alt=item[1];
+$('cap').textContent=item[1];
+$('desc').textContent=item[3]||'';
+$('catBadge').textContent=catNames[item[2]]||'';
+$('shr').textContent='نسخ رابط العمل';
+}
+works.forEach(function(w,n){var b=document.createElement('button');b.className='it';b.dataset.c=w[2];b.innerHTML='<img src="'+w[0]+'" alt="'+w[1]+'" loading="lazy">';
+b.onclick=function(){vis=works.filter(function(x){return $('chips').querySelector('[aria-pressed=true]').dataset.c=='all'||x[2]==$('chips').querySelector('[aria-pressed=true]').dataset.c});show(vis.indexOf(w));$('dlg').showModal()};
+b.onmousemove=function(e){var r=b.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;b.style.transform='perspective(700px) rotateY('+(x*-10)+'deg) rotateX('+(y*10)+'deg) scale(1.03)'};
+b.onmouseleave=function(){b.style.transform=''};$('gal').appendChild(b)});
+cats.forEach(function(c,i){var b=document.createElement('button');b.textContent=c[1];b.dataset.c=c[0];b.setAttribute('aria-pressed',i==0);
+b.onclick=function(){[].forEach.call($('chips').children,function(x){x.setAttribute('aria-pressed',x==b)});[].forEach.call($('gal').children,function(g){g.hidden=!(c[0]=='all'||g.dataset.c==c[0])})};$('chips').appendChild(b)});
+$('pv').onclick=function(){show(cur-1)};$('nx').onclick=function(){show(cur+1)};$('x').onclick=function(){$('dlg').close()};
+$('dlg').onclick=function(e){if(e.target==$('dlg'))$('dlg').close()};
+$('shr').onclick=function(){
+var url=location.origin+location.pathname+'#works';
+if(navigator.clipboard){navigator.clipboard.writeText(url);$('shr').textContent='تم نسخ الرابط ✓'}
+};
+document.addEventListener('keydown',function(e){if(!$('dlg').open)return;if(e.key=='ArrowRight')show(cur-1);if(e.key=='ArrowLeft')show(cur+1)});
+types.forEach(function(t,i){var l=document.createElement('label');l.innerHTML='<input type="radio" name="ty" value="'+t+'"'+(i?'':' checked')+'><span>'+t+'</span>';$('pk').appendChild(l)});
+$('f').onsubmit=function(e){e.preventDefault();
+var ty=document.querySelector('input[name=ty]:checked').value;
+var bdg=$('bdg').value;
+var dur=$('dur').value;
+var details=$('t').value.trim();
+var m='مرحباً m8desiner، أريد طلب تصميم:\n• النوع: '+ty+'\n• الميزانية التقريبية: '+bdg+'\n• المدة المطلوبة: '+dur+(details?'\n• التفاصيل: '+details:'');
+window.open('https://wa.me/9647828544008?text='+encodeURIComponent(m),'_blank')};
+$('rr').innerHTML=reviews.map(function(r){return '<div class="rc"><div class="st" aria-label="5 من 5">★★★★★</div><p>'+r[0]+'</p><b>'+r[1]+'</b></div>'}).join('');
+$('soc').innerHTML=socials.map(function(s){return '<a href="'+s[2]+'" target="_blank" rel="noopener" aria-label="'+s[0]+' - '+s[1]+'" title="'+s[0]+' ('+s[1]+')"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="'+s[3]+'"/></svg></a>'}).join('');
+$('y').textContent=new Date().getFullYear();
+var z=5;[].forEach.call(document.querySelectorAll('.dr'),function(el){var sx,sy,ox,oy;
+el.onpointerdown=function(e){el.setPointerCapture(e.pointerId);sx=e.clientX;sy=e.clientY;ox=el.offsetLeft;oy=el.offsetTop;el.style.zIndex=++z;el.style.rotate='0deg'};
+el.onpointermove=function(e){if(!el.hasPointerCapture(e.pointerId))return;el.style.left=(ox+e.clientX-sx)+'px';el.style.top=(oy+e.clientY-sy)+'px';el.style.bottom='auto'};
+el.ondragstart=function(e){e.preventDefault()}});
+</script>
+</body>
+</html>
